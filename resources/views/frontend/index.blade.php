@@ -1,8 +1,7 @@
+
+
 @extends('frontend.layouts.master')
-
 @section('content')
-    
-
 <div id="myCarousel" class="canvas carousel slide" data-ride="carousel">
     <!-- Full Page Image Background Carousel Header -->
 
@@ -44,11 +43,7 @@
         </div>
     </div>
 </div>
-
 @endsection
-
-
 @section('script')
-    
 @endsection
 

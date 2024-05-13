@@ -20,6 +20,7 @@
     <link href="{{ asset('assets/front/css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="{{ asset('assets/front/css/navmenu-reveal.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/front/css/style.css')}}" rel="stylesheet">
     <!-- <link href="css/full-slider.css" rel="stylesheet"> -->
     
 
@@ -47,16 +48,18 @@
         <li><a href="blog.html">Blog</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
-      <a class="navmenu-brand" href="#"><img src="img/logo.png" width="160"></a>
-      <div class="social">
+      <a class="navmenu-brand" href="#"><img src="{{ asset('assets/front/img/logo.png')}}" width="160"></a>
+
+
+      {{-- <div class="social">
         <a href="#"><i class="fa fa-twitter"></i></a>
         <a href="#"><i class="fa fa-facebook"></i></a>
         <a href="#"><i class="fa fa-instagram"></i></a>
         <a href="#"><i class="fa fa-pinterest-p"></i></a>
         <a href="#"><i class="fa fa-google-plus"></i></a>
         <a href="#"><i class="fa fa-skype"></i></a>
-      </div>
-      <div class="copyright-text">©Copyright <a href="https://themewagon.com/"> ThemeWagon</a> 2015 </div>
+      </div> --}}
+      
 </div>
 
         @yield('content')
