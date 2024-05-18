@@ -36,6 +36,14 @@
           </p>
         </a>
       </li>
+      <li class="nav-item">
+        <a href="{{route('admin.slider')}}" class="nav-link {{ (request()->is('admin/slider*')) ? 'active' : '' }}">
+          <i class="nav-icon fas fa-th"></i>
+          <p>
+            Slider
+          </p>
+        </a>
+      </li>
       
       
       

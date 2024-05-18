@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AgentController;
 use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\Admin\SliderController;
 
 
 /*------------------------------------------
@@ -39,6 +40,13 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
     Route::get('/country/{id}/edit', [CountryController::class, 'edit']);
     Route::post('/country-update', [CountryController::class, 'update']);
     Route::get('/country/{id}', [CountryController::class, 'delete']);
+
+    
+    Route::get('/slider', [SliderController::class, 'index'])->name('admin.slider');
+    Route::post('/slider', [SliderController::class, 'store']);
+    Route::get('/slider/{id}/edit', [SliderController::class, 'edit']);
+    Route::post('/slider-update', [SliderController::class, 'update']);
+    Route::get('/slider/{id}', [SliderController::class, 'delete']);
 
     
 });

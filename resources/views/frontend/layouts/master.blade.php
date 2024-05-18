@@ -42,11 +42,11 @@
 <div class="navmenu navmenu-default navmenu-fixed-left">
       
      <ul class="nav navmenu-nav">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="works.html">Works</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="{{route('homepage')}}">Home</a></li>
+        <li><a href="">Works</a></li>
+        <li><a href="">Gallery</a></li>
+        <li><a href="">Blog</a></li>
+        <li><a href="">Contact</a></li>
       </ul>
       <a class="navmenu-brand" href="#"><img src="{{ asset('assets/front/img/logo.png')}}" width="160"></a>
 
