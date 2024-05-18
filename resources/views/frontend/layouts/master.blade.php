@@ -45,8 +45,8 @@
         <li><a href="{{route('homepage')}}">Home</a></li>
         <li><a href="">Works</a></li>
         <li><a href="">Gallery</a></li>
-        <li><a href="">Blog</a></li>
-        <li><a href="">Contact</a></li>
+        <li><a href="{{route('about')}}">About</a></li>
+        <li><a href="{{route('contact')}}">Contact</a></li>
       </ul>
       <a class="navmenu-brand" href="#"><img src="{{ asset('assets/front/img/logo.png')}}" width="160"></a>
 
