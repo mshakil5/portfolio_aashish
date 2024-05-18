@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AgentController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\CompanyDetailController;
 
 
 /*------------------------------------------
@@ -47,6 +48,10 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
     Route::get('/slider/{id}/edit', [SliderController::class, 'edit']);
     Route::post('/slider-update', [SliderController::class, 'update']);
     Route::get('/slider/{id}', [SliderController::class, 'delete']);
+
+    // company information
+    Route::get('/company-detail', [CompanyDetailController::class, 'index'])->name('admin.companyDetail');
+    Route::post('/company-detail', [CompanyDetailController::class, 'update'])->name('admin.companyDetails');
 
     
 });
