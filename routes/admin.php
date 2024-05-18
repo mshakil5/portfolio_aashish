@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AgentController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\CompanyDetailController;
+use App\Http\Controllers\Admin\ContactMailController;
 
 
 /*------------------------------------------
@@ -30,11 +31,6 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
     Route::post('/new-admin-update', [AdminController::class, 'adminUpdate']);
     Route::get('/new-admin/{id}', [AdminController::class, 'adminDelete']);
     
-    Route::get('/agent', [AgentController::class, 'index'])->name('admin.agent');
-    Route::post('/agent', [AgentController::class, 'store']);
-    Route::get('/agent/{id}/edit', [AgentController::class, 'edit']);
-    Route::post('/agent-update', [AgentController::class, 'update']);
-    Route::get('/agent/{id}', [AgentController::class, 'delete']);
 
     Route::get('/country', [CountryController::class, 'index'])->name('admin.country');
     Route::post('/country', [CountryController::class, 'store']);
@@ -54,5 +50,15 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
     Route::post('/company-detail', [CompanyDetailController::class, 'update'])->name('admin.companyDetails');
 
     
+    // contact-mail
+    Route::get('/contact-mail', [ContactMailController::class, 'index'])->name('admin.contactMail');
+    // Route::post('/contact-mail', [CountryController::class, 'store']);
+    Route::get('/contact-mail/{id}/edit', [ContactMailController::class, 'edit']);
+    Route::post('/contact-mail-update', [ContactMailController::class, 'update']);
+    // Route::get('/contact-mail/{id}', [CountryController::class, 'delete']);
+
+
+
+
 });
   
