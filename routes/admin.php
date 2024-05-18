@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\CompanyDetailController;
 use App\Http\Controllers\Admin\ContactMailController;
+use App\Http\Controllers\Admin\MenuController;
 
 
 /*------------------------------------------
@@ -52,13 +53,17 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
     
     // contact-mail
     Route::get('/contact-mail', [ContactMailController::class, 'index'])->name('admin.contactMail');
-    // Route::post('/contact-mail', [CountryController::class, 'store']);
     Route::get('/contact-mail/{id}/edit', [ContactMailController::class, 'edit']);
     Route::post('/contact-mail-update', [ContactMailController::class, 'update']);
-    // Route::get('/contact-mail/{id}', [CountryController::class, 'delete']);
 
 
 
+    // menu
+    Route::get('/menu', [MenuController::class, 'index'])->name('admin.menu');
+    Route::post('/menu', [MenuController::class, 'store']);
+    Route::get('/menu/{id}/edit', [MenuController::class, 'edit']);
+    Route::post('/menu-update', [MenuController::class, 'update']);
+    Route::get('/menu/{id}', [MenuController::class, 'delete']);
 
 });
   

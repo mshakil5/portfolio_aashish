@@ -55,6 +55,16 @@
           </p>
         </a>
       </li>
+
+      
+      <li class="nav-item">
+        <a href="{{route('admin.menu')}}" class="nav-link {{ (request()->is('admin/menu*')) ? 'active' : '' }}">
+          <i class="nav-icon fas fa-th"></i>
+          <p>
+            Menu
+          </p>
+        </a>
+      </li>
       
       
       
