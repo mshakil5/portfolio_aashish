@@ -190,6 +190,8 @@
               form_data.append('image', file);
               form_data.append("title", $("#title").val());
               form_data.append("description", $("#description").val());
+
+
               $.ajax({
                 url: url,
                 method: "POST",
@@ -200,19 +202,7 @@
                     if (d.status == 303) {
                         $(".ermsg").html(d.message);
                     }else if(d.status == 300){
-
-                      $(function() {
-                          var Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 3000
-                          });
-                          Toast.fire({
-                            icon: 'success',
-                            title: 'Data create successfully.'
-                          });
-                        });
+                      swal.fire("Success");
                       window.setTimeout(function(){location.reload()},2000)
                     }
                 },
@@ -247,18 +237,7 @@
                           $(".ermsg").html(d.message);
                           pagetop();
                       }else if(d.status == 300){
-                        $(function() {
-                          var Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 3000
-                          });
-                          Toast.fire({
-                            icon: 'success',
-                            title: 'Data updated successfully.'
-                          });
-                        });
+                          swal.fire("Done!", "success");
                           window.setTimeout(function(){location.reload()},2000)
                       }
                   },
