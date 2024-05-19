@@ -70,7 +70,7 @@
       
 
       
-      <li class="nav-item {{ (request()->is('admin/client*')) ? 'menu-open' : '' }}{{ (request()->is('admin/completed-clients*')) ? 'menu-open' : '' }}{{ (request()->is('admin/decline-clients*')) ? 'menu-open' : '' }}{{ (request()->is('admin/processing-clients*')) ? 'menu-open' : '' }}">
+      <li class="nav-item {{ (request()->is('admin/category*')) ? 'menu-open' : '' }}{{ (request()->is('admin/gallery*')) ? 'menu-open' : '' }}">
 
         <a href="#" class="nav-link {{ (request()->is('admin/client*')) ? 'active' : '' }}">
           <i class="nav-icon fas fa-copy"></i>

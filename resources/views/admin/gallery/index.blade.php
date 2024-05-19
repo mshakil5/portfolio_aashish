@@ -2,39 +2,44 @@
 
 @section('content')
 
-<!-- content area -->
-<div class="content">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="pagetitle pb-2">
-                 Gallery
-            </div>
+<!-- Main content -->
+<section class="content mt-3" id="newBtnSection">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-2">
+            <button type="button" class="btn btn-secondary my-3" id="newBtn">Add new</button>
         </div>
+      </div>
     </div>
-<div id="addThisFormContainer">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card" style="background-color: #fdf3ee">
-                <div class="card-header">
-                    <h5>New Pages</h5>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="ermsg">
-                        </div>
-                        <div class="col-md-12">
-                          <div class="tile">
-                            <div class="row mb-3">
-                                <div class="col-lg-6">
-                                  {!! Form::open(['url' => 'admin/master/create','id'=>'createThisForm']) !!}
-                                  {!! Form::hidden('codeid','', ['id' => 'codeid']) !!}
-                                  @csrf
-                                  <div>
-                                      <label for="title">Title</label>
-                                      <input type="text" id="title" name="title" class="form-control">
-                                  </div>
+</section>
+  <!-- /.content -->
 
-                                  <div>
+  
+      <!-- Main content -->
+      <section class="content" id="addThisFormContainer">
+        <div class="container-fluid">
+          <div class="row justify-content-md-center">
+            <!-- right column -->
+            <div class="col-md-6">
+              <!-- general form elements disabled -->
+              <div class="card card-secondary">
+                <div class="card-header">
+                  <h3 class="card-title">Add new </h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <div class="ermsg"></div>
+
+                    <form id="createThisForm">
+                        @csrf
+                        <div class="row mb-3">
+                            <div class="col-lg-6">
+                                <input type="hidden" class="form-control" id="codeid" name="codeid">
+                                <div>
+                                    <label for="title">Title</label>
+                                    <input type="text" id="title" name="title" class="form-control">
+                                </div>
+                                <div>
                                     <label for="category_id">Category</label>
                                     <select name="category_id" id="category_id" class="form-control">
                                         <option value="">Select</option>
@@ -44,84 +49,99 @@
 
                                     </select>
                                 </div>
+                            </div>
 
-                                    
+                            <div class="col-lg-6">
+                                <div>
+                                    <label for="image">Image</label>
+                                    <input class="form-control" id="image" name="image" type="file">
                                 </div>
-                                <div class="col-lg-6">
-                                    <div>
-                                        <label for="image">Image</label>
-                                        <input class="form-control" id="image" name="image" type="file">
-                                    </div>
 
-                                </div>
-                              </div>
-                              <div class="tile-footer">
-                                  <input type="button" id="addBtn" value="Create" class="btn btn-primary">
-                                  <input type="button" id="FormCloseBtn" value="Close" class="btn btn-warning">
-                                  {!! Form::close() !!}
-                              </div>
-                          </div>
+                            </div>
+
                         </div>
-                    </div>
-
+                    </form>
                 </div>
-            </div>
-        </div>
-
-    </div>
-
-</div>
-
-<button id="newBtn" type="button" class="btn-theme bg-primary">Add New</button>
-    <hr>
-    <div id="contentContainer">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card" style="background-color: #fdf3ee">
-                    <div class="card-header">
-                        <h3> All Data</h3>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-bordered table-hover" id="exdatatable">
-                            <thead>
-                                <tr>
-                                    <th style="text-align: center">ID</th>
-                                    <th style="text-align: center">Title</th>
-                                    <th style="text-align: center">Description</th>
-                                    <th style="text-align: center">Image</th>
-                                    <th style="text-align: center">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($data as $key => $data)
-                                    <tr>
-                                        <td style="text-align: center">{{ $key + 1 }}</td>
-                                        <td style="text-align: center">{{$data->title}}</td>
-                                        <td style="text-align: center">{{$data->category->name}}</td>
-                                        <td style="text-align: center">
-                                            @if ($data->image)
-                                            <img src="{{asset('images/gallery/'.$data->image)}}" height="120px" width="220px" alt="">
-                                            @endif
-                                        </td>
-
-                                        <td style="text-align: center">
-                                            
-                                        {{-- <a href="{{route('admin.transactionView',$data->id)}}" ><i class="fa fa-eye" style="color: #548058;font-size:16px;"></i></a> --}}
-
-                                        <a id="EditBtn" rid="{{$data->id}}"><i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i></a>
-                                        <a id="deleteBtn" rid="{{$data->id}}"><i class="fa fa-trash-o" style="color: red;font-size:16px;"></i></a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                        </table>
-                    </div>
+  
+                
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button type="submit" id="addBtn" class="btn btn-secondary" value="Create">Create</button>
+                  <button type="submit" id="FormCloseBtn" class="btn btn-default">Cancel</button>
                 </div>
+                <!-- /.card-footer -->
+                <!-- /.card-body -->
+              </div>
             </div>
+            <!--/.col (right) -->
+          </div>
+          <!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
+
+
+
+      
+<!-- Main content -->
+<section class="content" id="contentContainer">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <!-- /.card -->
+
+          <div class="card card-secondary">
+            <div class="card-header">
+              <h3 class="card-title">All Data</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th style="text-align: center">ID</th>
+                    <th style="text-align: center">Title</th>
+                    <th style="text-align: center">Description</th>
+                    <th style="text-align: center">Image</th>
+                    <th style="text-align: center">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                  @foreach ($data as $key => $data)
+                    <tr>
+                        <td style="text-align: center">{{ $key + 1 }}</td>
+                        <td style="text-align: center">{{$data->title}}</td>
+                        <td style="text-align: center">{{$data->category->name}}</td>
+                        <td style="text-align: center">
+                            @if ($data->image)
+                            <img src="{{asset('images/gallery/'.$data->image)}}" height="120px" width="220px" alt="">
+                            @endif
+                        </td>
+
+                        <td style="text-align: center">
+                            
+                        {{-- <a href="{{route('admin.transactionView',$data->id)}}" ><i class="fa fa-eye" style="color: #548058;font-size:16px;"></i></a> --}}
+
+                        <a id="EditBtn" rid="{{$data->id}}"><i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i></a>
+                        <a id="deleteBtn" rid="{{$data->id}}"><i class="fa fa-trash-o" style="color: red;font-size:16px;"></i></a>
+                        </td>
+                    </tr>
+                  @endforeach
+                
+                </tbody>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
         </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
     </div>
-
-
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
         
 </div>
 
