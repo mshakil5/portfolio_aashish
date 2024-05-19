@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\CompanyDetailController;
 use App\Http\Controllers\Admin\ContactMailController;
 use App\Http\Controllers\Admin\MenuController;
+use App\Http\Controllers\Admin\GalleryController;
 
 
 /*------------------------------------------
@@ -50,13 +51,10 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
     Route::get('/company-detail', [CompanyDetailController::class, 'index'])->name('admin.companyDetail');
     Route::post('/company-detail', [CompanyDetailController::class, 'update'])->name('admin.companyDetails');
 
-    
     // contact-mail
     Route::get('/contact-mail', [ContactMailController::class, 'index'])->name('admin.contactMail');
     Route::get('/contact-mail/{id}/edit', [ContactMailController::class, 'edit']);
     Route::post('/contact-mail-update', [ContactMailController::class, 'update']);
-
-
 
     // menu
     Route::get('/menu', [MenuController::class, 'index'])->name('admin.menu');
@@ -64,6 +62,21 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
     Route::get('/menu/{id}/edit', [MenuController::class, 'edit']);
     Route::post('/menu-update', [MenuController::class, 'update']);
     Route::get('/menu/{id}', [MenuController::class, 'delete']);
+
+        
+    // category
+    Route::get('/category', [GalleryController::class, 'category'])->name('admin.category');
+    Route::post('/category', [GalleryController::class, 'categorystore']);
+    Route::get('/category/{id}/edit', [GalleryController::class, 'categoryedit']);
+    Route::post('/category-update', [GalleryController::class, 'categoryupdate']);
+    Route::get('/category/{id}', [GalleryController::class, 'categorydelete']);
+
+    
+    Route::get('/gallery', [GalleryController::class, 'index'])->name('admin.gallery');
+    Route::post('/gallery', [GalleryController::class, 'store']);
+    Route::get('/gallery/{id}/edit', [GalleryController::class, 'edit']);
+    Route::post('/gallery-update', [GalleryController::class, 'update']);
+    Route::get('/gallery/{id}', [GalleryController::class, 'delete']);
 
 });
   
