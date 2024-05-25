@@ -14,5 +14,10 @@ class Category extends Model
         return $this->hasMany(Gallery::class);
     }
 
+    public function menu()
+    {
+        return $this->belongsTo(Menu::class);
+    }
+
 
 }

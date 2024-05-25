@@ -71,13 +71,5 @@ class User extends Authenticatable
         );
     }
 
-    public function client()
-    {
-        return $this->hasMany(Client::class);
-    }
-
-    public function loan()
-    {
-        return $this->hasMany(Loan::class);
-    }
+    
 }

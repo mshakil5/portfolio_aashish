@@ -34,6 +34,17 @@
                     <input type="hidden" class="form-control" id="codeid" name="codeid">
                     <div class="row">
                       <div class="col-sm-12">
+                        
+                        <div class="form-group">
+                          <label>Menu</label>
+                          <select name="menu_id" id="menu_id" class="form-control">
+                            <option value="">Select</option>
+                            @foreach ($menus as $menu)
+                            <option value="{{$menu->id}}">{{$menu->name}}</option>
+                            @endforeach
+                          </select>
+                        </div>
+
                         <div class="form-group">
                           <label>Name</label>
                           <input type="text" class="form-control" id="name" name="name">
@@ -82,6 +93,7 @@
                 <thead>
                 <tr>
                   <th>Sl</th>
+                  <th>Menu Name</th>
                   <th>Name</th>
                   <th>Action</th>
                 </tr>
@@ -90,6 +102,7 @@
                   @foreach ($data as $key => $data)
                   <tr>
                     <td style="text-align: center">{{ $key + 1 }}</td>
+                    <td style="text-align: center">{{$data->menu->name}}</td>
                     <td style="text-align: center">{{$data->name}}</td>
                     <td style="text-align: center">
                       <a id="EditBtn" rid="{{$data->id}}"><i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i></a>
@@ -123,18 +136,12 @@
         $(document).ready(function () {
             $("#addThisFormContainer").hide();
             $("#newBtn").click(function(){
-                $("#description").addClass("ckeditor");
-                for ( instance in CKEDITOR.instances ) {
-                    CKEDITOR.instances[instance].updateElement();
-                } 
-                 CKEDITOR.replace( 'description' );
                 clearform();
                 $("#newBtn").hide(100);
                 $("#addThisFormContainer").show(300);
 
             });
             $("#FormCloseBtn").click(function(){
-                window.setTimeout(function(){location.reload()},100)
                 $("#addThisFormContainer").hide(200);
                 $("#newBtn").show(100);
                 clearform();
@@ -151,6 +158,7 @@
                     
                     var form_data = new FormData();
                     form_data.append("name", $("#name").val());
+                    form_data.append("menu_id", $("#menu_id").val());
                     $.ajax({
                       url: url,
                       method: "POST",
@@ -176,6 +184,7 @@
                     
                     var form_data = new FormData();
                     form_data.append("name", $("#name").val());
+                    form_data.append("menu_id", $("#menu_id").val());
                     form_data.append("codeid", $("#codeid").val());
                     $.ajax({
                         url:upurl,
@@ -242,6 +251,7 @@
 
             function populateForm(data){
                 $("#name").val(data.name);
+                $("#menu_id").val(data.menu_id);
                 $("#codeid").val(data.id);
                 $("#addBtn").val('Update');
                 $("#addThisFormContainer").show(300);

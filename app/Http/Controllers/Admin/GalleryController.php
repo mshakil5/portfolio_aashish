@@ -8,6 +8,7 @@ use App\Models\Category;
 use Illuminate\support\Facades\Auth;
 Use Image;
 use App\Models\Gallery;
+use App\Models\Menu;
 
 class GalleryController extends Controller
 {
@@ -20,8 +21,9 @@ class GalleryController extends Controller
 
     public function category()
     {
+        $menus = Menu::orderby('id', 'DESC')->get();
         $data = Category::orderby('id','DESC')->get();
-        return view('admin.gallery.category',compact('data'));
+        return view('admin.gallery.category',compact('data','menus'));
     }
 
     
@@ -104,6 +106,7 @@ class GalleryController extends Controller
     {
         $data = new Category();
         $data->name = $request->name;
+        $data->menu_id = $request->menu_id;
         $data->created_by = Auth::user()->id;
         if ($data->save()) {
             $message ="<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Data Created Successfully.</b></div>";
@@ -117,6 +120,7 @@ class GalleryController extends Controller
     {
         $data = Category::find($request->codeid);
         $data->name = $request->name;
+        $data->menu_id = $request->menu_id;
         $data->status = "0";
         $data->updated_by = Auth::user()->id;
 
