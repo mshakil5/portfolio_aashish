@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AgentController;
 use App\Http\Controllers\Admin\CountryController;
@@ -77,6 +78,13 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
     Route::get('/gallery/{id}/edit', [GalleryController::class, 'edit']);
     Route::post('/gallery-update', [GalleryController::class, 'update']);
     Route::get('/gallery/{id}', [GalleryController::class, 'delete']);
+
+    
+    // about
+    Route::get('/about', [AboutController::class, 'index'])->name('admin.about');
+    Route::post('/about', [AboutController::class, 'store']);
+    Route::get('/about/{id}/edit', [AboutController::class, 'edit']);
+    Route::post('/about-update', [AboutController::class, 'update']);
 
 });
   

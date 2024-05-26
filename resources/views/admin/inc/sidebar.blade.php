@@ -100,8 +100,14 @@
       </li>
 
 
-      
-
+      <li class="nav-item">
+        <a href="{{route('admin.about')}}" class="nav-link {{ (request()->is('admin/about*')) ? 'active' : '' }}">
+          <i class="nav-icon fas fa-th"></i>
+          <p>
+            About
+          </p>
+        </a>
+      </li>
 
 
 
