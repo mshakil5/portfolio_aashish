@@ -37,7 +37,7 @@
 
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                  <label>Image</label>
+                                  <label>Image (1920*1280)</label>
                                   <input class="form-control" id="image" name="image" type="file">
                                 </div>
               
@@ -64,7 +64,7 @@
                 
                 <!-- /.card-body -->
                 <div class="card-footer">
-                  <button type="submit" id="addBtn" class="btn btn-secondary" value="Create">Create</button>
+                  <button type="submit" id="addBtn" class="btn btn-secondary" value="Update">Update</button>
                   <button type="submit" id="FormCloseBtn" class="btn btn-default">Cancel</button>
                 </div>
                 <!-- /.card-footer -->
@@ -114,6 +114,10 @@
             //   alert("#addBtn");
                 if($(this).val() == 'Create') {
 
+                    for ( instance in CKEDITOR.instances ) {
+                    CKEDITOR.instances[instance].updateElement();
+                    } 
+
                     var file_data = $('#image').prop('files')[0];
                     if(typeof file_data === 'undefined'){
                         file_data = 'null';
@@ -146,6 +150,9 @@
                 //create  end
                 //Update
                 if($(this).val() == 'Update'){
+                    for ( instance in CKEDITOR.instances ) {
+                    CKEDITOR.instances[instance].updateElement();
+                    } 
 
                     var file_data = $('#image').prop('files')[0];
                     if(typeof file_data === 'undefined'){

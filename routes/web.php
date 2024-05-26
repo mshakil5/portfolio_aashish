@@ -34,6 +34,7 @@ Auth::routes();
 Route::get('/', [FrontendController::class, 'index'])->name('homepage');
 Route::get('/about', [FrontendController::class, 'about'])->name('about');
 Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
+Route::get('/gallery/{id}', [FrontendController::class, 'gallery'])->name('gallery');
   
 /*------------------------------------------
 --------------------------------------------

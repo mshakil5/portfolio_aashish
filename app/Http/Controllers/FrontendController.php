@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\About;
+use App\Models\Gallery;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -13,7 +15,8 @@ class FrontendController extends Controller
     }
     public function about()
     {
-        return view('frontend.about');
+        $data = About::orderby('id','DESC')->first();
+        return view('frontend.about',compact('data'));
     }
     public function contact()
     {
@@ -28,6 +31,12 @@ class FrontendController extends Controller
     public function terms()
     {
         return view('frontend.terms');
+    }
+
+    public function gallery($id)
+    {
+        $data = Gallery::orderby('id','DESC')->first();
+        return view('frontend.gallery',compact('data'));
     }
 
 
