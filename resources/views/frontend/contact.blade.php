@@ -23,21 +23,21 @@
       </div>
       <br>
       <div class="col-sm-12 col-md-12">
-          <form method="post" action="contact.php">
+          <form method="post" action="">
               <div class="controls controls-row">
                  <div class="">
-                  <input id="name" name="name" type="text" class="form-control" placeholder="Name"> 
+                  <input id="name" name="name" type="text" class="form-control" placeholder="Name" required> 
                   </div>
                    <div class="">
-                    <input id="email" name="email" type="email" class="col-md-6 form-control" placeholder="Email address">
+                    <input id="email" name="email" type="email" class="col-md-6 form-control" placeholder="Email address" required>
                   </div>
               </div>
               <div class="controls">
-                  <textarea id="message" name="message" class="col-md-12" placeholder="Your Message" rows="5"></textarea>
+                  <textarea id="message" name="message" class="col-md-12" placeholder="Your Message" rows="5" required></textarea>
               </div>
                 
               <div class="controls btn-full">
-                  <button id="contact-submit" name="submit" value="Submit" type="submit" class="btn btn-primary">Send</button>
+                  <button  type="submit" class="btn btn-primary">Send</button>
               </div>
           </form>
       </div>
