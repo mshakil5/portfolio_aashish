@@ -176,7 +176,7 @@
 
                 <div class="col-sm-4">
                   <div class="form-group">
-                    <label>Homepage Header Logo*</label>
+                    <label>Logo*</label>
                     <input type="file" class="form-control @error('header_logo') is-invalid @enderror" id="header_logo" name="header_logo">
                     
                     @error('header_logo')
@@ -202,7 +202,7 @@
 
                 <div class="col-sm-4">
                     <div class="form-group">
-                      <label>Footer Logo*</label>
+                      <label>Contact Page Image*</label>
                       <input type="file" class="form-control @error('footer_logo') is-invalid @enderror" id="footer_logo" name="footer_logo">
                       
                       @error('footer_logo')

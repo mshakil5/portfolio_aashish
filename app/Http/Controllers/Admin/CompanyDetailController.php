@@ -24,7 +24,7 @@ class CompanyDetailController extends Controller
 
             if (isset($request->header_logo)) {
                 $request->validate([
-                    'header_logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                    'header_logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:3048',
                 ]);
                 $rand1 = mt_rand(100000, 999999);
                 $header_logoName = time(). $rand1 .'.'.$request->header_logo->extension();
@@ -34,7 +34,7 @@ class CompanyDetailController extends Controller
 
             if (isset($request->logo)) {
                 $request->validate([
-                    'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                    'logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:3048',
                 ]);
                 $rand2 = mt_rand(100000, 999999);
                 $logoName = time(). $rand2 .'.'.$request->logo->extension();
@@ -44,7 +44,7 @@ class CompanyDetailController extends Controller
 
             if (isset($request->footer_logo)) {
                 $request->validate([
-                    'footer_logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                    'footer_logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:3048',
                 ]);
                 $rand2 = mt_rand(100000, 999999);
                 $footer_logoName = time(). $rand2 .'.'.$request->footer_logo->extension();
