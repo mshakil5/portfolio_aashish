@@ -21,7 +21,8 @@
       <br>
       <div class="col-sm-12 col-md-12">
         <div class="ermsg"></div>
-          <form method="post" action="">
+          <form method="post" action="{{route('contact.submit')}}">
+            @csrf
               <div class="controls controls-row">
                  <div class="">
                   <input id="name" name="name" type="text" class="form-control" placeholder="Name" required> 

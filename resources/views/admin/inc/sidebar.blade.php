@@ -109,6 +109,15 @@
         </a>
       </li>
 
+      <li class="nav-item">
+        <a href="{{route('admin.contactMessage')}}" class="nav-link {{ (request()->is('admin/contact-all-message*')) ? 'active' : '' }}">
+          <i class="nav-icon fas fa-th"></i>
+          <p>
+            Message
+          </p>
+        </a>
+      </li>
+
 
 
 

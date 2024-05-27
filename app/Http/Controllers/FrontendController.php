@@ -87,6 +87,7 @@ class FrontendController extends Controller
         }
 
         $contactmail = ContactMail::where('id', 1)->first()->email;
+
         $contact = new Contact();
         $contact->name = $request->name;
         $contact->email = $request->email; 
@@ -98,6 +99,7 @@ class FrontendController extends Controller
             $array['subject'] = "Contact Message Mail";
             $array['message'] = $request->message;
             $array['contactmail'] = $contactmail;
+            
             Mail::to($contactmail)
             ->send(new ContactFormMail($array));
             

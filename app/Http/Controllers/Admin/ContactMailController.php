@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 use App\Models\ContactMail;
 use Illuminate\Support\Facades\Auth;
@@ -46,5 +47,11 @@ class ContactMailController extends Controller
         else{
             return response()->json(['status'=> 303,'message'=>'Server Error!!']);
         } 
+    }
+
+    public function getAllMessage()
+    {
+        $data = Contact::orderby('id','DESC')->get();
+        return view('admin.contactMail.contact', compact('data'));
     }
 }

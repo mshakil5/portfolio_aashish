@@ -56,6 +56,7 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
     Route::get('/contact-mail', [ContactMailController::class, 'index'])->name('admin.contactMail');
     Route::get('/contact-mail/{id}/edit', [ContactMailController::class, 'edit']);
     Route::post('/contact-mail-update', [ContactMailController::class, 'update']);
+    Route::get('/contact-all-message', [ContactMailController::class, 'getAllMessage'])->name('admin.contactMessage');
 
     // menu
     Route::get('/menu', [MenuController::class, 'index'])->name('admin.menu');
