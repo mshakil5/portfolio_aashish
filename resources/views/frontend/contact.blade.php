@@ -21,22 +21,34 @@
       <br>
       <div class="col-sm-12 col-md-12">
         <div class="ermsg"></div>
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+
           <form method="post" action="{{route('contact.submit')}}">
             @csrf
               <div class="controls controls-row">
                  <div class="">
-                  <input id="name" name="name" type="text" class="form-control" placeholder="Name" required> 
+                  <input id="name" name="name" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Name" required> 
                   </div>
                    <div class="">
-                    <input id="email" name="email" type="email" class="col-md-6 form-control" placeholder="Email address" required>
+                    <input id="email" name="email" type="email" class="col-md-6 form-control @error('email') is-invalid @enderror" placeholder="Email address" required>
                   </div>
               </div>
               <div class="controls">
-                  <textarea id="message" name="message" class="col-md-12" placeholder="Your Message" rows="5" required></textarea>
+                  <textarea id="message" name="message" class="col-md-12  @error('message') is-invalid @enderror" placeholder="Your Message" rows="5" required></textarea>
               </div>
                 
               <div class="controls btn-full">
-                  <button  type="submit" class="btn btn-primary">Send</button>
+                  <button  type="submit"  class="btn btn-primary">Send</button>
               </div>
           </form>
       </div>
@@ -61,7 +73,9 @@
 
          //  make mail start
          var url = "{{URL::to('/contact-submit')}}";
-         $("#submit").click(function(){
+
+         $("#submitBtn").click(function(){
+          alert('btn work');
                  var name= $("#name").val();
                  var email= $("#email").val();
                  var message= $("#message").val();

@@ -53,37 +53,23 @@ class FrontendController extends Controller
         $emailValidation = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,10}$/";
 
         if(empty($name)){
-            $message ="<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-            Please fill name field, thank you!
-            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
-            return response()->json(['status'=> 303,'message'=>$message]);
-            exit();
+            return back()->with('error', 'Please fill name field, thank you!');
         }
         
         if(empty($email)){
-            $message ="<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-            Please fill email field, thank you!
-            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
-            return response()->json(['status'=> 303,'message'=>$message]);
-            exit();
+            return back()->with('error', 'Please fill email field, thank you!');
         }
 
         if(!preg_match($emailValidation,$email)){
 	    
-            $message ="<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-            Your mail ".$email." is not valid mail. Please wirite a valid mail, thank you!
-            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
-            return response()->json(['status'=> 303,'message'=>$message]);
-            exit();
+            return back()->with('error', 'Your mail is not valid mail. Please wirite a valid mail, thank you!');
+
             
         }
         
         if(empty($visitor_message)){
-            $message ="<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-            Please write your query in message field, thank you!
-            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
-            return response()->json(['status'=> 303,'message'=>$message]);
-            exit();
+            return back()->with('error', 'Please write your query in message field, thank you!');
+            
         }
 
         $contactmail = ContactMail::where('id', 1)->first()->email;
@@ -103,11 +89,9 @@ class FrontendController extends Controller
             Mail::to($contactmail)
             ->send(new ContactFormMail($array));
             
-
-            $message ="<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Message Send Successfully.</b></div>";
-            return response()->json(['status'=> 300,'message'=>$message]);
+            return back()->with('success', 'Your message send successfully.');
         } else {
-            return response()->json(['status'=> 303,'message'=>'Server Error']);
+            return back()->with('error', 'An error occurred while creating the user.');
         }
     }
 

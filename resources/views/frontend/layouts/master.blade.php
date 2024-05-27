@@ -14,10 +14,10 @@
 
     <!-- Bootstrap core CSS -->
    
+    <link href="{{ asset('assets/front/css/bootstrap.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link href="{{ asset('assets/front/dist/css/jasny-bootstrap.min.css')}}" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-    <link href="{{ asset('assets/front/css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="{{ asset('assets/front/css/navmenu-reveal.css')}}" rel="stylesheet">
     <link href="{{ asset('assets/front/css/style.css')}}" rel="stylesheet">
