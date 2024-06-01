@@ -56,7 +56,7 @@
           <li><a class="" href="#">{{$menu->name}}    &raquo; </a>
             <ul class="nav navmenu-nav">
               @foreach ($menu->category as $cat)
-                <li><a class="dropdown-item" href="{{route('gallery', $cat->id)}}">{{$cat->name}}</a></li>
+                <li><a class="dropdown-item" href="{{route('gallery', ['mid' => $menu->id, 'catid' => $cat->id ])}}">{{$cat->name}}</a></li>
               @endforeach
               
             </ul>

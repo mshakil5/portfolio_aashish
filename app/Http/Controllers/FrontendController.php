@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\ContactFormMail;
 use App\Models\About;
+use App\Models\Category;
 use App\Models\Contact;
 use App\Models\ContactMail;
 use App\Models\Gallery;
@@ -37,10 +38,13 @@ class FrontendController extends Controller
         return view('frontend.terms');
     }
 
-    public function gallery($id)
+    public function gallery($catid, $mid)
     {
-        $data = Gallery::orderby('id','DESC')->first();
-        return view('frontend.gallery',compact('data'));
+        // dd($catid, $mid);
+
+        $data = Category::with('gallery')->where('menu_id', $mid)->orderby('id','DESC')->get();
+        // dd($data );
+        return view('frontend.gallery',compact('data','catid'));
     }
 
 
