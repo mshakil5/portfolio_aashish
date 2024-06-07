@@ -20,7 +20,7 @@
         <div class="container-fluid">
           <div class="row justify-content-md-center">
             <!-- right column -->
-            <div class="col-md-6">
+            <div class="col-md-10">
               <!-- general form elements disabled -->
               <div class="card card-secondary">
                 <div class="card-header">
@@ -33,7 +33,7 @@
                     <form id="createThisForm">
                         @csrf
                         <div class="row mb-3">
-                            <div class="col-lg-6">
+                            <div class="col-lg-8">
                                 <input type="hidden" class="form-control" id="codeid" name="codeid">
                                 <div>
                                     <label for="title">Title</label>
@@ -51,10 +51,18 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
                                 <div>
                                     <label for="image">Image</label>
                                     <input class="form-control" id="image" name="image" type="file">
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div>
+                                    <label for="description">Description</label>
+                                    <textarea id="description" name="description" class="form-control ckeditor" cols="30" rows="5"></textarea>
                                 </div>
 
                             </div>
@@ -101,7 +109,7 @@
                 <tr>
                     <th style="text-align: center">ID</th>
                     <th style="text-align: center">Title</th>
-                    <th style="text-align: center">Description</th>
+                    <th style="text-align: center">Category</th>
                     <th style="text-align: center">Image</th>
                     <th style="text-align: center">Action</th>
                 </tr>
@@ -180,6 +188,10 @@
             //   alert("#addBtn");
                 if($(this).val() == 'Create') {
 
+                    for ( instance in CKEDITOR.instances ) {
+                    CKEDITOR.instances[instance].updateElement();
+                    } 
+
                     var file_data = $('#image').prop('files')[0];
                     if(typeof file_data === 'undefined'){
                         file_data = 'null';
@@ -189,6 +201,7 @@
                     form_data.append('image', file_data);
                     form_data.append("title", $("#title").val());
                     form_data.append("category_id", $("#category_id").val());
+                    form_data.append("description", $("#description").val());
                     $.ajax({
                       url: url,
                       method: "POST",
@@ -212,6 +225,9 @@
                 //Update
                 if($(this).val() == 'Update'){
 
+                    for ( instance in CKEDITOR.instances ) {
+                    CKEDITOR.instances[instance].updateElement();
+                    } 
                     var file_data = $('#image').prop('files')[0];
                     if(typeof file_data === 'undefined'){
                         file_data = 'null';
@@ -220,6 +236,7 @@
                     form_data.append('image', file_data);
                     form_data.append("title", $("#title").val());
                     form_data.append("category_id", $("#category_id").val());
+                    form_data.append("description", $("#description").val());
                     form_data.append("codeid", $("#codeid").val());
                     $.ajax({
                         url:upurl,
@@ -287,6 +304,7 @@
             function populateForm(data){
                 $("#title").val(data.title);
                 $("#category_id").val(data.category_id);
+                $("#description").val(data.description);
                 $("#codeid").val(data.id);
                 $("#addBtn").val('Update');
                 $("#addThisFormContainer").show(300);

@@ -32,6 +32,7 @@ class GalleryController extends Controller
     {
         $data = new Gallery();
         $data->title = $request->title;
+        $data->description = $request->description;
         $data->category_id = $request->category_id;
 
         // image
@@ -81,6 +82,7 @@ class GalleryController extends Controller
         }
             $data->title = $request->title;
             $data->category_id = $request->category_id;
+            $data->description = $request->description;
             $data->status = "0";
             $data->updated_by = Auth::user()->id;
 
