@@ -14,33 +14,25 @@
 
     <!-- Wrapper for Slides -->
     <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <!-- Set the first background image using inline CSS below. -->
-            <!-- <div class="fill" style="background-image:url('img/bg.jpg');"></div> -->
-            <img src="{{ asset('assets/front/img/bg.jpg')}}" alt="First slide">
-            <div class="carousel-caption">
-              <h2 class="sub-title-home">We Don't Take Photograph</h2>
-              <h1 class="title-home">We Make It</h1>
-            </div>
+
+      @foreach (\App\Models\Slider::orderby('id','DESC')->get() as $key => $slider)
+        <div class="item  @if ($key == 0) active @endif">
+          <img src="{{asset('images/slider/'.$slider->image)}}" alt="First slide">
+          <div class="carousel-caption">
+            <h2 class="sub-title-home">{{$slider->title}}</h2>
+            <h1 class="title-home">{{$slider->description}}</h1>
+          </div>
         </div>
-        <div class="item">
-            <!-- Set the second background image using inline CSS below. -->
-            <!-- <div class="fill" style="background-image:url('img/bg1.jpg');"></div> -->
-            <img src="{{ asset('assets/front/img/bg1.jpg')}}" alt="Second slide">
-            <div class="carousel-caption">
-              <h2 class="sub-title-home">We Don't Take Photograph</h2>
-              <h1 class="title-home">We Make It</h1>
-            </div>
-        </div>
-        <div class="item">
-            <!-- Set the third background image using inline CSS below. -->
-            <!-- <div class="fill" style="background-image:url('img/bg3.jpg');"></div> -->
-            <img src="{{ asset('assets/front/img/bg3.jpg')}}" alt="Third slide">
-            <div class="carousel-caption">
-              <h2 class="sub-title-home">We Don't Take Photograph</h2>
-              <h1 class="title-home">We Make It</h1>
-            </div>
-        </div>
+      @endforeach
+
+
+        
+
+        
+
+
+
+
     </div>
 </div>
 @endsection
