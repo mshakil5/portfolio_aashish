@@ -50,64 +50,24 @@
 
         @foreach ($menus as $menu)
 
-        {{-- <li><a href="#">{{$menu->name}}</a></li> --}}
-
-        <ul class="nav navmenu-nav">
-          <li><a class="" href="#">{{$menu->name}}    &raquo; </a>
-            <ul class="nav navmenu-nav">
-              @foreach ($menu->category as $cat)
-                <li><a class="dropdown-item" href="{{route('gallery', ['mid' => $menu->id, 'catid' => $cat->id ])}}">{{$cat->name}}</a></li>
-              @endforeach
-              
-            </ul>
-          </li>
-        </ul>
+        <li class="nav-link">
+          <a href="#">{{$menu->name}}    &raquo;</a>
+          <div class="subitem">
+            @foreach ($menu->category as $cat)
+            <a href="{{route('gallery', ['mid' => $menu->id, 'catid' => $cat->id ])}}">{{$cat->name}}</a>
+            @endforeach
+            
+          </div>
+        </li>
 
         @endforeach
         
         <li><a href="{{route('about')}}">About</a></li>
         <li><a href="{{route('contact')}}">Contact</a></li>
 
-      </ul>
-
-      <div id="accordion">
         
-              <button class="navmenu-brand" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                Item #1
-              </button>
-              
-              <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                  Anim pariatur 
-              </div>
 
-
-          
-          
-              <button class="navmenu-brand collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                Item #2
-              </button>
-              
-            
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-              <div class="card-body">
-                Anim pariatur
-              </div>
-            </div>
-          
-              <button class="navmenu-brand collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                Item #3
-              </button>
-              
-            
-            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-              <div class="card-body">
-                Anim pariatur
-              </div>
-            </div>
-          
-
-
-      </div>
+      </ul>
 
 
       <a class="navmenu-brand" href="#"><img src="{{ asset('images/company/'.\App\Models\CompanyDetail::where('id',1)->first()->header_logo)}}" width="160"></a>
@@ -127,6 +87,8 @@
       </div> --}}
       
 </div>
+
+
 
         @yield('content')
       <!-- <div class="navbar navbar-default navbar-fixed-top">

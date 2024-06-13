@@ -462,3 +462,20 @@ h3.blog-post-title {
       margin:10px 40px 20px;
   }
 }
+
+
+.navmenu-fixed-left .nav-link .subitem{
+  display: none;
+}
+
+.navmenu-fixed-left .nav-link.active-link .subitem{
+  display: block!important;
+}
+.navmenu-fixed-left .nav-link.active-link .subitem a{
+  color: #767676;
+  text-transform: capitalize;
+  padding: 4px 15px 4px 25px;
+  display: block;
+  background-color: #2e2f30;
+  font-size: 13px;
+}
