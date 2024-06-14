@@ -33,12 +33,15 @@
                     <form id="createThisForm">
                         @csrf
                         <div class="row mb-3">
-                            <div class="col-lg-8">
+                            <div class="col-lg-4">
                                 <input type="hidden" class="form-control" id="codeid" name="codeid">
                                 <div>
                                     <label for="title">Title</label>
                                     <input type="text" id="title" name="title" class="form-control">
                                 </div>
+                            </div>
+
+                            <div class="col-lg-4">
                                 <div>
                                     <label for="category_id">Category</label>
                                     <select name="category_id" id="category_id" class="form-control">
@@ -46,10 +49,11 @@
                                         @foreach ($cats as $cat)
                                         <option value="{{$cat->id}}">{{$cat->name}}</option>
                                         @endforeach
-
                                     </select>
                                 </div>
                             </div>
+
+
 
                             <div class="col-lg-4">
                                 <div>
@@ -61,8 +65,12 @@
 
                             <div class="col-lg-12">
                                 <div>
+                                    {{-- <label for="description">Description</label>
+                                    <textarea id="description" name="description" class="form-control ckeditor" cols="30" rows="5"></textarea> --}}
+
                                     <label for="description">Description</label>
-                                    <textarea id="description" name="description" class="form-control ckeditor" cols="30" rows="5"></textarea>
+                                                <textarea class="form-control" id="description" name="description" rows="4" placeholder="Enter your description"></textarea>
+
                                 </div>
 
                             </div>
@@ -111,6 +119,7 @@
                     <th style="text-align: center">Title</th>
                     <th style="text-align: center">Category</th>
                     <th style="text-align: center">Image</th>
+                    <th style="text-align: center">Description</th>
                     <th style="text-align: center">Action</th>
                 </tr>
                 </thead>
@@ -125,6 +134,7 @@
                             <img src="{{asset('images/gallery/'.$data->image)}}" height="120px" width="220px" alt="">
                             @endif
                         </td>
+                        <td style="text-align: center">{!! $data->description !!}</td>
 
                         <td style="text-align: center">
                             
@@ -302,9 +312,15 @@
             //Delete
 
             function populateForm(data){
+                for ( instance in CKEDITOR.instances ) {
+                    CKEDITOR.instances[instance].updateElement();
+                    } 
+                    
+                $("#description").val(data.description);
+                CKEDITOR.replace( 'description' );
+
                 $("#title").val(data.title);
                 $("#category_id").val(data.category_id);
-                $("#description").val(data.description);
                 $("#codeid").val(data.id);
                 $("#addBtn").val('Update');
                 $("#addThisFormContainer").show(300);
