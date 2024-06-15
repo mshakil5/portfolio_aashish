@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\CompanyDetailController;
 use App\Http\Controllers\Admin\ContactMailController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\GalleryController;
+use App\Http\Controllers\Admin\PageController;
 
 
 /*------------------------------------------
@@ -86,6 +87,13 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
     Route::post('/about', [AboutController::class, 'store']);
     Route::get('/about/{id}/edit', [AboutController::class, 'edit']);
     Route::post('/about-update', [AboutController::class, 'update']);
+
+    
+    Route::get('/pages', [PageController::class, 'index'])->name('admin.pages');
+    Route::post('/pages', [PageController::class, 'store']);
+    Route::get('/pages/{id}/edit', [PageController::class, 'edit']);
+    Route::post('/pages-update', [PageController::class, 'update']);
+    Route::get('/pages/{id}', [PageController::class, 'delete']);
 
 });
   
