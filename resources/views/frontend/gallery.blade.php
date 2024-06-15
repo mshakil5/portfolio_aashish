@@ -38,7 +38,7 @@
 
             @foreach ($category->gallery as $item)
                 
-            <a class="col-md-4 {{$category->name}}" href="#"><img src="{{asset('images/gallery/'.$item->image)}}" class="img-responsive"></a>
+            <a class="col-md-4 {{$category->name}}" href="{{route('galleryDetails', $item->id)}}"><img src="{{asset('images/gallery/'.$item->image)}}" class="img-responsive"></a>
 
             @endforeach
                 

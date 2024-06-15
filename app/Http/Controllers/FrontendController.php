@@ -47,6 +47,12 @@ class FrontendController extends Controller
         return view('frontend.gallery',compact('data','catid'));
     }
 
+    public function galleryDetails($id)
+    {
+        $data = Gallery::where('id',$id)->first();
+        return view('frontend.gallery_detail',compact('data'));
+    }
+
 
     public function visitorContact(Request $request)
     {
