@@ -20,6 +20,7 @@ class PageController extends Controller
     public function store(Request $request)
     {
         $data = new Page();
+        $data->menu = $request->menu;
         $data->title = $request->title;
         $data->description = $request->description;
 
@@ -68,8 +69,8 @@ class PageController extends Controller
             $request->image->move(public_path('images/page'), $imageName);
             $data->image= $imageName;
         }
+            $data->menu = $request->menu;
             $data->title = $request->title;
-            $data->category_id = $request->category_id;
             $data->description = $request->description;
             $data->status = "0";
             $data->updated_by = Auth::user()->id;

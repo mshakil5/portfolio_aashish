@@ -99,6 +99,15 @@
         </ul>
       </li>
 
+      <li class="nav-item">
+        <a href="{{route('admin.pages')}}" class="nav-link {{ (request()->is('admin/pages*')) ? 'active' : '' }}">
+          <i class="nav-icon fas fa-th"></i>
+          <p>
+            Pages
+          </p>
+        </a>
+      </li>
+
 
       <li class="nav-item">
         <a href="{{route('admin.about')}}" class="nav-link {{ (request()->is('admin/about*')) ? 'active' : '' }}">

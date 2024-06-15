@@ -36,7 +36,13 @@
                             <div class="col-lg-4">
                                 <input type="hidden" class="form-control" id="codeid" name="codeid">
                                 <div>
-                                    <label for="title">Title</label>
+                                    <label for="menu">Menu Name</label>
+                                    <input type="text" id="menu" name="menu" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div>
+                                    <label for="title">Page Title</label>
                                     <input type="text" id="title" name="title" class="form-control">
                                 </div>
                             </div>
@@ -99,7 +105,8 @@
                 <thead>
                 <tr>
                     <th style="text-align: center">ID</th>
-                    <th style="text-align: center">Title</th>
+                    <th style="text-align: center">Menu Name</th>
+                    <th style="text-align: center">Page Title</th>
                     <th style="text-align: center">Image</th>
                     <th style="text-align: center">Description</th>
                     <th style="text-align: center">Action</th>
@@ -109,6 +116,7 @@
                   @foreach ($data as $key => $data)
                     <tr>
                         <td style="text-align: center">{{ $key + 1 }}</td>
+                        <td style="text-align: center">{{$data->menu}}</td>
                         <td style="text-align: center">{{$data->title}}</td>
                         <td style="text-align: center">
                             @if ($data->image)
@@ -172,8 +180,8 @@
             //header for csrf-token is must in laravel
             $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
             //
-            var url = "{{URL::to('/admin/page')}}";
-            var upurl = "{{URL::to('/admin/page-update')}}";
+            var url = "{{URL::to('/admin/pages')}}";
+            var upurl = "{{URL::to('/admin/pages-update')}}";
             // console.log(url);
             $("#addBtn").click(function(){
             //   alert("#addBtn");
@@ -190,6 +198,7 @@
 
                     var form_data = new FormData();
                     form_data.append('image', file_data);
+                    form_data.append("menu", $("#menu").val());
                     form_data.append("title", $("#title").val());
                     form_data.append("description", $("#description").val());
                     $.ajax({
@@ -224,6 +233,7 @@
                     }
                     var form_data = new FormData();
                     form_data.append('image', file_data);
+                    form_data.append("menu", $("#menu").val());
                     form_data.append("title", $("#title").val());
                     form_data.append("description", $("#description").val());
                     form_data.append("codeid", $("#codeid").val());
@@ -298,6 +308,7 @@
                 $("#description").val(data.description);
                 CKEDITOR.replace( 'description' );
 
+                $("#menu").val(data.menu);
                 $("#title").val(data.title);
                 $("#codeid").val(data.id);
                 $("#addBtn").val('Update');

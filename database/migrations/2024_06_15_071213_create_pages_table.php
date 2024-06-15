@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
+            $table->string('menu')->nullable();
             $table->string('image')->nullable();
             $table->string('title')->nullable();
             $table->text('description')->nullable();
