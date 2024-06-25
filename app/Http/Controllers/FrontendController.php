@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Contact;
 use App\Models\ContactMail;
 use App\Models\Gallery;
+use App\Models\Page;
 use Mail;
 use Illuminate\Http\Request;
 
@@ -51,6 +52,12 @@ class FrontendController extends Controller
     {
         $data = Gallery::where('id',$id)->first();
         return view('frontend.gallery_detail',compact('data'));
+    }
+
+    public function newPages($id)
+    {
+        $data = Page::where('id',$id)->first();
+        return view('frontend.page',compact('data'));
     }
 
 

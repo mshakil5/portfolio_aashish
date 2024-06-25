@@ -42,6 +42,7 @@
   </div>  
   @php
       $menus = \App\Models\Menu::with('category')->orderby('id','DESC')->get();
+      $pages = \App\Models\Page::orderby('id','DESC')->get();
   @endphp
 <div class="navmenu navmenu-default navmenu-fixed-left">
       
@@ -61,7 +62,14 @@
         </li>
 
         @endforeach
+        @if (isset($pages))
+        @foreach ($pages as $page)
+        <li><a href="{{route('frontend.pages', $page->id)}}">{{$page->menu}}</a></li>
+        @endforeach
+        @endif
         
+
+
         <li><a href="{{route('about')}}">About</a></li>
         <li><a href="{{route('contact')}}">Contact</a></li>
 

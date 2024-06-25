@@ -38,6 +38,7 @@ Route::get('/gallery/{catid}/{mid}', [FrontendController::class, 'gallery'])->na
 
 
 Route::get('/gallery-details/{id}', [FrontendController::class, 'galleryDetails'])->name('galleryDetails');
+Route::get('/pages/{id}', [FrontendController::class, 'newPages'])->name('frontend.pages');
   
 Route::post('/contact-submit', [FrontendController::class, 'visitorContact'])->name('contact.submit');
 
