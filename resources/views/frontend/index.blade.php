@@ -7,9 +7,9 @@
 
     <!-- Indicators -->
     <ol class="carousel-indicators xtra-border">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
+        @foreach (\App\Models\Slider::orderby('id','DESC')->get() as $key => $slider)
+        <li data-target="#myCarousel" data-slide-to="{{$key}}" class="@if ($key == 0) active @endif"></li>
+        @endforeach
     </ol>
 
     <!-- Wrapper for Slides -->
