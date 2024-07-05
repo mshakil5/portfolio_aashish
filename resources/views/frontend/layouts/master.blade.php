@@ -62,11 +62,11 @@
         </li>
 
         @endforeach
-        @if (isset($pages))
+
+        
         @foreach ($pages as $page)
         <li><a href="{{route('frontend.pages', $page->id)}}">{{$page->menu}}</a></li>
         @endforeach
-        @endif
         
 
 
