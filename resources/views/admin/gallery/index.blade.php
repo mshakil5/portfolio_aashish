@@ -166,17 +166,20 @@
 
 @endsection
 @section('script')
+{{-- <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script> --}}
+{{-- <script src="https://cdn.ckeditor.com/4.24.0-lts/standard/ckeditor.js"></script> --}}
 
-<script src="//cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
+<!-- Summernote -->
+{{-- <script src="../../plugins/summernote/summernote-bs4.min.js"></script> --}}
     <script>
         $(document).ready(function () {
             $("#addThisFormContainer").hide();
             $("#newBtn").click(function(){
-                $("#description").addClass("ckeditor");
-                for ( instance in CKEDITOR.instances ) {
-                    CKEDITOR.instances[instance].updateElement();
-                } 
-                 CKEDITOR.replace( 'description' );
+                // $("#description").addClass("ckeditor");
+                // for ( instance in CKEDITOR.instances ) {
+                //     CKEDITOR.instances[instance].updateElement();
+                // } 
+                //  CKEDITOR.replace( 'description' );
                 clearform();
                 $("#newBtn").hide(100);
                 $("#addThisFormContainer").show(300);
