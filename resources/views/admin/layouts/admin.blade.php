@@ -27,6 +27,35 @@
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.5.1/sweetalert2.min.css">
 
+
+  <style type="text/css">
+    .loading {
+        z-index: 20;
+        position: absolute;
+        top: 0;
+        left:-5px;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.4);
+    }
+    .loading-content {
+        position: absolute;
+        border: 16px solid #f3f3f3;
+        border-top: 16px solid #3498db;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        top: 40%;
+        left:50%;
+        animation: spin 2s linear infinite;
+        }
+          
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+</style>
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -95,7 +124,9 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    
+    <section id="loading">
+      <div id="loading-content"></div>
+  </section>
 
     <!-- Main content -->
     @yield('content')
@@ -161,7 +192,7 @@
 <script>
   $(function () {
     // Summernote
-    $('#description').summernote()
+    // $('#description').summernote()
   })
 </script>
 <script>
@@ -172,6 +203,29 @@
               behavior: 'smooth',
           });
       }
+</script>
+<script type="text/javascript">
+  
+  /*------------------------------------------
+  --------------------------------------------
+  Add Loading When fire Ajax Request
+  --------------------------------------------
+  --------------------------------------------*/
+  $(document).ajaxStart(function() {
+      $('#loading').addClass('loading');
+      $('#loading-content').addClass('loading-content');
+  });
+
+  /*------------------------------------------
+  --------------------------------------------
+  Remove Loading When fire Ajax Request
+  --------------------------------------------
+  --------------------------------------------*/
+  $(document).ajaxStop(function() {
+      $('#loading').removeClass('loading');
+      $('#loading-content').removeClass('loading-content');
+  });
+    
 </script>
 @yield('script')
 </body>
