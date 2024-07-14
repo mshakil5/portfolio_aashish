@@ -10,16 +10,26 @@
   <div class="blog col-md-12   col-sm-12 col-xs-12">
     <div class="blog-post-single">
       
-      <p class="blog-post-sub-title text-center"> {{$data->title}} </p>
-      <h3 class="blog-post-title text-center ">{{$data->big_title}}</h3>
-       <span class="title-divider"></span>
-      <img class="featured" src="{{asset('images/about/'.$data->image)}}" width="100%" alt="Background">
-     <br>
-      <p class="blog-text-single">
-        {!! $data->description !!}
+      <div class="contact-bg col-md-8 col-sm-12">
         
+        <p class="blog-post-sub-title text-center"> {{$data->title}} </p>
+        <h3 class="blog-post-title text-center ">{{$data->big_title}}</h3>
+        <span class="title-divider"></span>
+        <img class="featured" src="{{asset('images/about/'.$data->image)}}" width="95%" alt="Background">
+      </div>
+
+      <div class="contact-bg col-md-4 col-sm-12">
         
-      </p>
+        <p class="blog-text-single">
+
+          {!! $data->description !!}
+          
+        </p>
+      </div>
+
+
+
+
     </div>
   </div>
 
