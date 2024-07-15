@@ -18,7 +18,7 @@
         <img class="featured" src="{{asset('images/about/'.$data->image)}}" width="95%" alt="Background">
       </div>
 
-      <div class="contact-bg col-md-4 col-sm-12">
+      <div class="contact-bg col-md-3 col-sm-12">
         
         <p class="blog-text-single">
 
