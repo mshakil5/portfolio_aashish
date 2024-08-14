@@ -63,6 +63,14 @@
 
                             </div>
 
+                            
+                            <div class="col-lg-12">
+                                <div>
+                                    <label for="link">Link</label>
+                                    <input type="text" id="link" name="link" class="form-control">
+                                </div>
+                            </div>
+
                             <div class="col-lg-12">
                                 <div>
                                     {{-- <label for="description">Description</label>
@@ -112,42 +120,49 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                    <th style="text-align: center">ID</th>
-                    <th style="text-align: center">Title</th>
-                    <th style="text-align: center">Category</th>
-                    <th style="text-align: center">Image</th>
-                    <th style="text-align: center">Description</th>
-                    <th style="text-align: center">Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                  @foreach ($data as $key => $data)
-                    <tr>
-                        <td style="text-align: center">{{ $key + 1 }}</td>
-                        <td style="text-align: center">{{$data->title}}</td>
-                        <td style="text-align: center">{{$data->category->name}}</td>
-                        <td style="text-align: center">
-                            @if ($data->image)
-                            <img src="{{asset('images/gallery/'.$data->image)}}" height="120px" width="220px" alt="">
-                            @endif
-                        </td>
-                        <td style="text-align: center">{!! $data->description !!}</td>
 
-                        <td style="text-align: center">
-                            
-                        {{-- <a href="{{route('admin.transactionView',$data->id)}}" ><i class="fa fa-eye" style="color: #548058;font-size:16px;"></i></a> --}}
+                <div class="container" style="max-width: 1400px;">
+                    <table class="table table-bordered table-hover table-responsive" id="example" style="width: 100%">
+                        <thead>
+                        <tr>
+                            <th style="text-align: center">ID</th>
+                            <th style="text-align: center">Title</th>
+                            <th style="text-align: center">Category</th>
+                            <th style="text-align: center">Image</th>
+                            <th style="text-align: center">Link</th>
+                            <th style="text-align: center">Description</th>
+                            <th style="text-align: center">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                          @foreach ($data as $key => $data)
+                            <tr>
+                                <td style="text-align: center">{{ $key + 1 }}</td>
+                                <td style="text-align: center">{{$data->title}}</td>
+                                <td style="text-align: center">{{$data->category->name}}</td>
+                                <td style="text-align: center">
+                                    @if ($data->image)
+                                    <img src="{{asset('images/gallery/'.$data->image)}}" height="120px" width="220px" alt="">
+                                    @endif
+                                </td>
+                                <td style="text-align: center">{{$data->link}}</td>
+                                <td style="text-align: center">{!! $data->description !!}</td>
+        
+                                <td style="text-align: center">
+                                    
+                                {{-- <a href="{{route('admin.transactionView',$data->id)}}" ><i class="fa fa-eye" style="color: #548058;font-size:16px;"></i></a> --}}
+        
+                                <a id="EditBtn" rid="{{$data->id}}"><i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i></a>
+                                <a id="deleteBtn" rid="{{$data->id}}"><i class="fa fa-trash-o" style="color: red;font-size:16px;"></i></a>
+                                </td>
+                            </tr>
+                          @endforeach
+                        
+                        </tbody>
+                      </table>
+                </div>
 
-                        <a id="EditBtn" rid="{{$data->id}}"><i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i></a>
-                        <a id="deleteBtn" rid="{{$data->id}}"><i class="fa fa-trash-o" style="color: red;font-size:16px;"></i></a>
-                        </td>
-                    </tr>
-                  @endforeach
-                
-                </tbody>
-              </table>
+              
             </div>
             <!-- /.card-body -->
           </div>
@@ -213,6 +228,7 @@
                     var form_data = new FormData();
                     form_data.append('image', file_data);
                     form_data.append("title", $("#title").val());
+                    form_data.append("link", $("#link").val());
                     form_data.append("category_id", $("#category_id").val());
                     form_data.append("description", $("#description").val());
                     $.ajax({
@@ -248,6 +264,7 @@
                     var form_data = new FormData();
                     form_data.append('image', file_data);
                     form_data.append("title", $("#title").val());
+                    form_data.append("link", $("#link").val());
                     form_data.append("category_id", $("#category_id").val());
                     form_data.append("description", $("#description").val());
                     form_data.append("codeid", $("#codeid").val());
@@ -323,6 +340,7 @@
                 CKEDITOR.replace( 'description' );
 
                 $("#title").val(data.title);
+                $("#link").val(data.link);
                 $("#category_id").val(data.category_id);
                 $("#codeid").val(data.id);
                 $("#addBtn").val('Update');

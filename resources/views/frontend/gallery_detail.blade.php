@@ -32,6 +32,15 @@
         
         <p class="blog-post-sub-title text-center"> {{$data->title}} </p>
         <span class="title-divider"></span>
+        @if ($data->link)
+        <div class="blog-post-sub-title text-center">
+
+          <iframe width="800" height="515" src="{{$data->link}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+        </div>
+        @endif
+        
+
         <img class="featured" src="{{asset('images/gallery/'.$data->image)}}" width="95%" alt="Background">
       </div>
 

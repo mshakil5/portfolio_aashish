@@ -34,6 +34,7 @@ class GalleryController extends Controller
         $data->title = $request->title;
         $data->description = $request->description;
         $data->category_id = $request->category_id;
+        $data->link = $request->link;
 
         // image
         if ($request->image != 'null') {
@@ -81,6 +82,7 @@ class GalleryController extends Controller
             $data->image= $imageName;
         }
             $data->title = $request->title;
+            $data->link = $request->link;
             $data->category_id = $request->category_id;
             $data->description = $request->description;
             $data->status = "0";
