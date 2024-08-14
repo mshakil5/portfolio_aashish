@@ -16,41 +16,34 @@
   <div id="container" class="container">
     <div id="gallery">
       <div id="gallery-header">
-        <div id="gallery-header-center">
+        {{-- <div id="gallery-header-center">
           <div id="gallery-header-center-left">
             <!-- <div id="gallery-header-center-left-icon">
             </div> -->
             <div id="gallery-header-center-left-title">All Galleries</div>
           </div>
-        <div id="gallery-header-center-right">
-            <div class="gallery-header-center-right-links gallery-header-center-right-links-current" data-filter="*">All</div>
-            @foreach ($data as $cat)
-            <div class="gallery-header-center-right-links" data-filter=".{{$cat->name}}">{{$cat->name}}</div>
-            @endforeach
-            
-        </div>
-        </div>
+          <div id="gallery-header-center-right">
+              <div class="gallery-header-center-right-links gallery-header-center-right-links-current" data-filter="*">All</div>
+              @foreach ($data as $cat)
+              <div class="gallery-header-center-right-links" data-filter=".{{$cat->name}}">{{$cat->name}}</div>
+              @endforeach
+          </div>
+        </div> --}}
       </div>
         <div id="gallery-content">
-        <div id="gallery-content-center" class="row gallery-content-center-full">
+          <div id="gallery-content-center" class="row gallery-content-center-full">
 
-            @foreach ($data as $category)
+              @foreach ($data as $category)
 
-            @foreach ($category->gallery as $item)
-                
-            <a class="col-md-4 {{$category->name}}" href="{{route('galleryDetails', $item->id)}}"><img src="{{asset('images/gallery/'.$item->image)}}" class="img-responsive"></a>
+              @foreach ($category->gallery as $item)
+                  
+              <a class="col-md-4 {{$category->name}}" href="{{route('galleryDetails', $item->id)}}"><img src="{{asset('images/gallery/'.$item->image)}}" class="img-responsive"></a>
 
-            @endforeach
-                
-            @endforeach
+              @endforeach
+                  
+              @endforeach
 
-
-
-
-
-
-
-        </div>
+          </div>
         </div>
   </div>
 </div>
