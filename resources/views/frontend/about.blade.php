@@ -11,7 +11,7 @@
     <div class="blog col-md-12   col-sm-12 col-xs-12">
       <div class="blog-post-single">
         
-        <div class="contact-bg col-md-8 col-sm-12 text-justify">
+        <div class="contact-bg col-md-7 col-sm-12 text-justify">
           
           <h3 class="blog-post-title text-center ">{{$data->title}} </h3>
           <p class="blog-post-sub-title text-center"> {{$data->big_title}} </p>
@@ -19,7 +19,7 @@
           {!! $data->description !!}
         </div>
   
-        <div class="col-md-3 col-sm-12 text-justify">
+        <div class="col-md-5 col-sm-12 text-justify">
           
           <img class="featured" src="{{asset('images/about/'.$data->image)}}" width="100%" alt="Background">
           {{-- <div class="">
