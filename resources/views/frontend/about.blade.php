@@ -6,32 +6,37 @@
 
 
 <div class="canvas col-md-12">
-  
-  <div class="blog col-md-12   col-sm-12 col-xs-12">
-    <div class="blog-post-single">
-      
-      <div class="contact-bg col-md-8 col-sm-12">
-        
-        <p class="blog-post-sub-title text-center"> {{$data->title}} </p>
-        <h3 class="blog-post-title text-center ">{{$data->big_title}}</h3>
-        <span class="title-divider"></span>
-        <img class="featured" src="{{asset('images/about/'.$data->image)}}" width="95%" alt="Background">
-      </div>
 
-      <div class="contact-bg col-md-3 col-sm-12">
+  <div class="container">
+    <div class="blog col-md-12   col-sm-12 col-xs-12">
+      <div class="blog-post-single">
         
-        <p class="blog-text-single">
-
-          {!! $data->description !!}
+        <div class="contact-bg col-md-8 col-sm-12">
           
-        </p>
+          <h3 class="blog-post-title text-center ">{{$data->title}} </h3>
+          <p class="blog-post-sub-title text-center"> {{$data->big_title}} </p>
+          <span class="title-divider"></span>
+          <img class="featured" src="{{asset('images/about/'.$data->image)}}" width="95%" alt="Background">
+        </div>
+  
+        <div class="contact-bg col-md-3 col-sm-12 text-justify">
+          <div class="contact-desc">
+            <p class="blog-text-single">
+    
+              {!! $data->description !!}
+              
+            </p>
+          </div>
+        </div>
+  
+  
+  
+  
       </div>
-
-
-
-
     </div>
   </div>
+  
+
 
   {{-- <div class=" col-md-3 col-sm-12 col-xs-12 page-container sidebar visible-xs visible-sm">
     <div class="home-page-header1">

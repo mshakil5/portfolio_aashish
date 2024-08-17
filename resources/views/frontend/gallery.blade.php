@@ -33,15 +33,13 @@
         <div id="gallery-content">
           <div id="gallery-content-center" class="row gallery-content-center-full">
 
-              @foreach ($data as $category)
 
-              @foreach ($category->gallery as $item)
+              @foreach ($data as $item)
                   
-              <a class="col-md-4 {{$category->name}}" href="{{route('galleryDetails', $item->id)}}"><img src="{{asset('images/gallery/'.$item->image)}}" class="img-responsive"></a>
+              <a class="col-md-4" href="{{route('galleryDetails', $item->id)}}"><img src="{{asset('images/gallery/'.$item->image)}}" class="img-responsive"></a>
 
               @endforeach
                   
-              @endforeach
 
           </div>
         </div>

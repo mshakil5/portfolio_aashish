@@ -4,22 +4,29 @@
 @section('content')
 
 <div class="canvas contact-page">
+
+  <div class="container ">
     <div class="contact-bg col-md-8 col-sm-12">
+      <h3 class="blog-post-title text-center"> Contact Us </h3>
+      
       <img src="{{ asset('images/company/'.\App\Models\CompanyDetail::where('id',1)->first()->footer_logo)}}" alt="" width="100%">
     </div>
-    <div class="col-md-4 col-sm-12 contact-bar">
-      <iframe src="{{ \App\Models\CompanyDetail::where('id',1)->first()->google_map}}" width="500" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      <h3 class="interest-text text-center"> Thanks for your Interest </h3>
+    
+    <div class="col-md-4 col-sm-12">
+
+      <h3 class="blog-post-title text-center"> Thanks for your Interest </h3>
+      {{-- <span class="title-divider"></span> --}}
       <br>
+
       <div class="col-md-6 add-text">
         {{ \App\Models\CompanyDetail::first()->address1}}
-      {{ \App\Models\CompanyDetail::first()->phone1}}
+        {{ \App\Models\CompanyDetail::first()->phone1}}
       </div>
       <div class="col-md-6 add-text">
       
       </div>
       <br>
-      <div class="col-sm-12 col-md-12">
+      <div class="col-md-12 col-md-12">
         <div class="ermsg"></div>
         @if (session('success'))
             <div class="alert alert-success">
@@ -48,12 +55,32 @@
               </div>
                 
               <div class="controls btn-full">
-                  <button  type="submit"  class="btn btn-primary">Send</button>
+                  <button  type="submit"  class="btn btn-primary m-2">Send</button>
               </div>
           </form>
       </div>
+      
+      
+
     </div>
+
+    <div class="col-md-12 col-sm-12">
+      <div style="margin-top: 40px" class="m-3">
+        
+        <iframe src="{{ \App\Models\CompanyDetail::where('id',1)->first()->google_map}}" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    </div>
+    </div>
+
+
+
+
   </div>
+
+
+
+
+</div>
 
     
   

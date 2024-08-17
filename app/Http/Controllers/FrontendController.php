@@ -43,7 +43,8 @@ class FrontendController extends Controller
     {
         // dd($catid, $mid);
 
-        $data = Category::with('gallery')->where('menu_id', $mid)->orderby('id','DESC')->get();
+        // $data = Category::with('gallery')->where('menu_id', $mid)->orderby('id','DESC')->get();
+        $data = Gallery::where('category_id', $catid)->orderby('id','DESC')->get();
         // dd($data );
         return view('frontend.gallery',compact('data','catid'));
     }
