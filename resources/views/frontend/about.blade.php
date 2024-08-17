@@ -11,19 +11,19 @@
     <div class="blog col-md-12   col-sm-12 col-xs-12">
       <div class="blog-post-single">
         
-        <div class="contact-bg col-md-8 col-sm-12">
+        <div class="contact-bg col-md-8 col-sm-12 text-justify">
           
           <h3 class="blog-post-title text-center ">{{$data->title}} </h3>
           <p class="blog-post-sub-title text-center"> {{$data->big_title}} </p>
           <span class="title-divider"></span>
-          <img class="featured" src="{{asset('images/about/'.$data->image)}}" width="95%" alt="Background">
+          {!! $data->description !!}
         </div>
   
         <div class="contact-bg col-md-3 col-sm-12 text-justify">
-          <div class="contact-desc">
+          <div class="">
             <p class="blog-text-single">
     
-              {!! $data->description !!}
+              <img class="featured" src="{{asset('images/about/'.$data->image)}}" width="95%" alt="Background">
               
             </p>
           </div>
