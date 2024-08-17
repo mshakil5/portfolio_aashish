@@ -19,14 +19,14 @@
           {!! $data->description !!}
         </div>
   
-        <div class="contact-bg col-md-3 col-sm-12 text-justify">
-          <div class="">
+        <div class="col-md-3 col-sm-12 text-justify">
+          
+          <img class="featured" src="{{asset('images/about/'.$data->image)}}" width="100%" alt="Background">
+          {{-- <div class="">
             <p class="blog-text-single">
-    
-              <img class="featured" src="{{asset('images/about/'.$data->image)}}" width="95%" alt="Background">
               
             </p>
-          </div>
+          </div> --}}
         </div>
   
   
