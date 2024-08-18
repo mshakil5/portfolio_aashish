@@ -38,13 +38,16 @@
           <iframe width="800" height="515" src="{{$data->link}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
         </div>
+        @else
+        
+        <img class="featured" src="{{asset('images/gallery/'.$data->image)}}" width="95%" alt="Background">
+        
         @endif
         
 
-        <img class="featured" src="{{asset('images/gallery/'.$data->image)}}" width="95%" alt="Background">
       </div>
 
-      <div class="contact-bg col-md-3 col-sm-12" style="margin-top: 50px">
+      <div class="contact-bg col-md-3 col-sm-12 text-justify" style="margin-top: 50px">
         
         <p class="blog-text-single">
 
