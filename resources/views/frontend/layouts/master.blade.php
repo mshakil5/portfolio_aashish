@@ -134,6 +134,7 @@
     <script type="text/javascript" src="{{ asset('assets/front/js/bootstrap.min.js')}}"></script>
     <script src="{{ asset('assets/front/js/main.js')}}"></script>
     
+    
     <script>
     $('.carousel').carousel({
         interval: 6000 //changes the speed
