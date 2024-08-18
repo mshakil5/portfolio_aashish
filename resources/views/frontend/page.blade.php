@@ -5,7 +5,7 @@
 
 
 
-<div class="canvas col-md-12">
+{{-- <div class="canvas col-md-12">
   
   <div class="blog col-md-12   col-sm-12 col-xs-12">
     <div class="blog-post-single">
@@ -23,6 +23,34 @@
   </div>
   
 
+</div> --}}
+
+<div id="container" class="container">
+  <div id="gallery">
+    <div id="gallery-header">
+      <div id="gallery-header-center">
+        <div id="gallery-header-center-left">
+          <!-- <div id="gallery-header-center-left-icon">
+          </div> -->
+          <div id="gallery-header-center-left-title">{{$data->title}}</div>
+        </div>
+        
+      </div>
+    </div>
+  <div id="gallery-content">
+    <div id="gallery-content-center" class="row gallery-content-center-full">
+
+
+      {{-- <a class="col-md-4 action" href="assets/studio1.jpg" data-lightbox="studio1"><img src="assets/studio1.jpg" class="img-responsive"></a> --}}
+      @foreach ($data->photo as $key => $image)
+        <a class="col-md-4" href="{{asset('images/page/'.$image->image)}}" data-lightbox="studio1">
+          <img src="{{asset('images/page/'.$image->image)}}" class="img-responsive"></a>
+      @endforeach
+      
+      
+    </div>
+  </div>
+</div>
 </div>
 
 

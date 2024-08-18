@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Page;
+use App\Models\Photo;
 use Illuminate\Http\Request;
 use Illuminate\support\Facades\Auth;
 
@@ -12,7 +13,7 @@ class PageController extends Controller
 
     public function index()
     {
-        $data = Page::orderby('id','DESC')->get();
+        $data = Page::with('photo')->orderby('id','DESC')->get();
         return view('admin.page.index',compact('data'));
     }
 
@@ -22,25 +23,30 @@ class PageController extends Controller
         $data = new Page();
         $data->menu = $request->menu;
         $data->title = $request->title;
-        $data->description = $request->description;
-
-        // image
-        if ($request->image != 'null') {
-            $request->validate([
-                'image' => 'required|mimes:jpeg,png,jpg,gif,svg,pdf|max:8048',
-            ]);
-            $rand = mt_rand(100000, 999999);
-            $imageName = time(). $rand .'.'.$request->image->extension();
-            $request->image->move(public_path('images/page'), $imageName);
-            $data->image = $imageName;
-        }
-        // end
-
         $data->status = "0";
         $data->created_by = Auth::user()->id;
         if ($data->save()) {
-            $message ="<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Data Created Successfully.</b></div>";
-            return response()->json(['status'=> 300,'message'=>$message]);
+
+            if ($request->image) {
+                // $media= [];
+                foreach ($request->image as $image) {
+                    $rand = mt_rand(100000, 999999);
+                    $name = time() . "_" . Auth::id() . "_" . $rand . "." . $image->getClientOriginalExtension();
+                    //move image to postimages folder
+                    $image->move(public_path() . '/images/page/', $name);
+                    //insert into picture table
+                    $pic = new Photo();
+                    $pic->image = $name;
+                    $pic->page_id = $data->id;
+                    $pic->created_by = Auth::user()->id;
+                    $pic->save();
+                }
+                
+                $message ="<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Data Create Successfully.</b></div>";
+                return response()->json(['status'=> 300,'message'=>$message]);
+                
+            }
+
         } else {
             return response()->json(['status'=> 303,'message'=>'Server Error!!']);
         }
@@ -59,23 +65,30 @@ class PageController extends Controller
     {
         $data = Page::find($request->codeid);
 
-        if($request->image != 'null'){
-
-            $request->validate([
-                'image' => 'required|mimes:jpeg,png,jpg,gif,svg,pdf|max:8048',
-            ]);
-            $rand = mt_rand(100000, 999999);
-            $imageName = time(). $rand .'.'.$request->image->extension();
-            $request->image->move(public_path('images/page'), $imageName);
-            $data->image= $imageName;
-        }
             $data->menu = $request->menu;
             $data->title = $request->title;
-            $data->description = $request->description;
             $data->status = "0";
             $data->updated_by = Auth::user()->id;
 
         if ($data->save()) {
+
+            if ($request->image) {
+                // $media= [];
+                foreach ($request->image as $image) {
+                    $rand = mt_rand(100000, 999999);
+                    $name = time() . "_" . Auth::id() . "_" . $rand . "." . $image->getClientOriginalExtension();
+                    //move image to postimages folder
+                    $image->move(public_path() . '/images/page/', $name);
+                    //insert into picture table
+                    $pic = new Photo();
+                    $pic->image = $name;
+                    $pic->page_id = $data->id;
+                    $pic->created_by = Auth::user()->id;
+                    $pic->save();
+                }
+                
+            }
+
             $message ="<div class='alert alert-success'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Data Updated Successfully.</b></div>";
             return response()->json(['status'=> 300,'message'=>$message]);
         }else{

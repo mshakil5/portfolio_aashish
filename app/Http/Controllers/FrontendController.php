@@ -57,7 +57,7 @@ class FrontendController extends Controller
 
     public function newPages($id)
     {
-        $data = Page::where('id',$id)->first();
+        $data = Page::with('photo')->where('id',$id)->first();
         return view('frontend.page',compact('data'));
     }
 

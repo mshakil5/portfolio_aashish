@@ -33,37 +33,30 @@
                     <form id="createThisForm">
                         @csrf
                         <div class="row mb-3">
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <input type="hidden" class="form-control" id="codeid" name="codeid">
                                 <div>
                                     <label for="menu">Menu Name</label>
                                     <input type="text" id="menu" name="menu" class="form-control">
                                 </div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <div>
                                     <label for="title">Page Title</label>
                                     <input type="text" id="title" name="title" class="form-control">
                                 </div>
                             </div>
 
-                            <div class="col-lg-4">
-                                <div>
-                                    <label for="image">Image</label>
-                                    <input class="form-control" id="image" name="image" type="file">
-                                </div>
-
-                            </div>
-
                             <div class="col-lg-12">
                                 <div>
-                                    <label for="description">Description</label>
-                                                <textarea class="form-control" id="description" name="description" rows="4" placeholder="Enter your description"></textarea>
-
+                                    <label for="image">Image</label>
+                                    {{-- <input class="form-control" id="image" name="image" type="file"> --}}
+                                    <input type="file" name="image[]" class="form-control" id="image" multiple required>
                                 </div>
 
                             </div>
 
+                            
                         </div>
                     </form>
                 </div>
@@ -108,7 +101,6 @@
                     <th style="text-align: center">Menu Name</th>
                     <th style="text-align: center">Page Title</th>
                     <th style="text-align: center">Image</th>
-                    <th style="text-align: center">Description</th>
                     <th style="text-align: center">Action</th>
                 </tr>
                 </thead>
@@ -119,11 +111,26 @@
                         <td style="text-align: center">{{$data->menu}}</td>
                         <td style="text-align: center">{{$data->title}}</td>
                         <td style="text-align: center">
-                            @if ($data->image)
+                            {{-- @if ($data->image)
                             <img src="{{asset('images/page/'.$data->image)}}" height="120px" width="220px" alt="">
-                            @endif
+                            @endif --}}
+
+                        @if ($data->photo)
+                          <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                              @foreach ($data->photo as $key => $image)
+                                <div class="carousel-item {{ $key==0 ? 'active' : '' }}">
+                                  <img src="{{asset('images/page/'.$image->image)}}"  height="120px" width="320px" alt="...">
+                                </div> 
+                              @endforeach
+                            </div>
+                          </div>
+                        @endif
+
+
+
                         </td>
-                        <td style="text-align: center">{!! $data->description !!}</td>
+                        
 
                         <td style="text-align: center">
                             
@@ -156,16 +163,13 @@
 @endsection
 @section('script')
 
-<script src="//cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
     <script>
+        
+        var storedFiles = [];
+  
         $(document).ready(function () {
             $("#addThisFormContainer").hide();
             $("#newBtn").click(function(){
-                $("#description").addClass("ckeditor");
-                for ( instance in CKEDITOR.instances ) {
-                    CKEDITOR.instances[instance].updateElement();
-                } 
-                 CKEDITOR.replace( 'description' );
                 clearform();
                 $("#newBtn").hide(100);
                 $("#addThisFormContainer").show(300);
@@ -186,18 +190,13 @@
             $("#addBtn").click(function(){
             //   alert("#addBtn");
                 if($(this).val() == 'Create') {
-
-                    for ( instance in CKEDITOR.instances ) {
-                    CKEDITOR.instances[instance].updateElement();
-                    } 
-
-                    var file_data = $('#image').prop('files')[0];
-                    if(typeof file_data === 'undefined'){
-                        file_data = 'null';
-                    }
+                    
 
                     var form_data = new FormData();
-                    form_data.append('image', file_data);
+                    for(var i=0, len=storedFiles.length; i<len; i++) {
+                        form_data.append('image[]', storedFiles[i]);
+                    }
+                    // form_data.append('image', file_data);
                     form_data.append("menu", $("#menu").val());
                     form_data.append("title", $("#title").val());
                     form_data.append("description", $("#description").val());
@@ -224,9 +223,6 @@
                 //Update
                 if($(this).val() == 'Update'){
 
-                    for ( instance in CKEDITOR.instances ) {
-                    CKEDITOR.instances[instance].updateElement();
-                    } 
                     var file_data = $('#image').prop('files')[0];
                     if(typeof file_data === 'undefined'){
                         file_data = 'null';
@@ -301,13 +297,6 @@
             //Delete
 
             function populateForm(data){
-                for ( instance in CKEDITOR.instances ) {
-                    CKEDITOR.instances[instance].updateElement();
-                    } 
-                    
-                $("#description").val(data.description);
-                CKEDITOR.replace( 'description' );
-
                 $("#menu").val(data.menu);
                 $("#title").val(data.title);
                 $("#codeid").val(data.id);
@@ -326,6 +315,17 @@
             $('#exdatatable').DataTable();
         });
 
+          // images
+        /* WHEN YOU UPLOAD ONE OR MULTIPLE FILES */
+        $(document).on('change','#image',function(){
+            len_files = $("#image").prop("files").length;
+            
+            for (var i = 0; i < len_files; i++) {
+                var file_data2 = $("#image").prop("files")[i];
+                storedFiles.push(file_data2);
+            }
+            
+        });
             
     </script>
       <script>

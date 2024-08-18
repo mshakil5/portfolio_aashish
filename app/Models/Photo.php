@@ -5,14 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Page extends Model
+class Photo extends Model
 {
     use HasFactory;
 
-
-    public function photo()
+    public function page()
     {
-        return $this->hasMany(Photo::class);
+        return $this->belongsTo(Page::class);
     }
-
 }
