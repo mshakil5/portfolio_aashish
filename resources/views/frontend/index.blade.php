@@ -3,6 +3,17 @@
 @extends('frontend.layouts.master')
 @section('content')
 
+<nav class="navbar navbar-fixed-top navbar-light" style="margin-left: 260px">
+  <div class="row">
+    {{-- <img class="navbar-brand" src="{{asset('logo.png')}}" alt="logo" > --}}
+    {{-- <ul class="nav navbar-nav">
+      <li class="nav-item"><a href="#" class="nav-link">START</a></li>
+    </ul> --}}
+
+    <h3 class="sub-title-home">{{ \App\Models\CompanyDetail::where('id',1)->first()->company_name }}</h3>
+  </div>
+</nav>
+
 {{-- <nav class="navbar navbar-expand-sm fixed-top navbar-light">
   <div class="container">
       <a class="navbar-brand" href="#">Brand</a>
