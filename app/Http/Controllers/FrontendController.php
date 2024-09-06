@@ -52,7 +52,8 @@ class FrontendController extends Controller
     public function galleryDetails($id)
     {
         $data = Gallery::where('id',$id)->first();
-        return view('frontend.gallery_detail',compact('data'));
+        $cats = Gallery::where('category_id', $data->category_id)->orderby('id','DESC')->get();
+        return view('frontend.gallery_detail',compact('data','cats'));
     }
 
     public function newPages($id)

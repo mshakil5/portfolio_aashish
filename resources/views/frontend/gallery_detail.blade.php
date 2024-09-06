@@ -43,6 +43,18 @@
         <img class="featured" src="{{asset('images/gallery/'.$data->image)}}" width="95%" alt="Background">
         
         @endif
+
+        
+    <h1 class="blog-post-title text-center">Have a look to my others work</h1>
+    <span class="title-divider"></span>
+
+        <div id="gallery-content">
+          <div id="gallery-content-center" class="row gallery-content-center-full">
+              @foreach ($cats as $item)
+              <a class="col-md-4" href="{{route('galleryDetails', $item->id)}}"><img src="{{asset('images/gallery/'.$item->image)}}" class="img-responsive"></a>
+              @endforeach
+          </div>
+        </div>
         
 
       </div>
@@ -58,11 +70,16 @@
 
 
 
+      
+
 
     </div>
+
+
+    
+
+
   </div>
-
-
 
 
 @endsection
