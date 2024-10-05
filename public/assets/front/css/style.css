@@ -14,7 +14,7 @@ body{
   font-family: 'Raleway', sans-serif;
 }
 .bar {
-  background-color: black;
+  background-color: rgb(255, 255, 255);
   height: 200%;
   width: 30px;
   position: fixed;
@@ -32,8 +32,8 @@ body{
   text-align: center;
 }
 .canvas{
-   background: rgb(15, 14, 14);
-   color: rgb(136, 136, 136);
+   background: rgb(255, 255, 255);
+   color: rgb(0, 0, 0);
 }
 
 a.navmenu-brand {
@@ -101,14 +101,14 @@ h2.sub-title-home {
 }
 
 h3.sub-title-home {
-  color: white;
+  color: rgb(0, 0, 0);
   margin-bottom: -15px;
   font-size: 50px;
 }
 
 @media (max-width: 700px){
   h3.sub-title-home {
-    color: white;
+    color: rgb(0, 0, 0);
     font-size: 22px;
   }
 }
@@ -479,11 +479,11 @@ h3.blog-post-title {
   display: block!important;
 }
 .navmenu-fixed-left .nav-link.active-link .subitem a{
-  color: #767676;
+  color: #000000;
   text-transform: capitalize;
   padding: 4px 15px 4px 25px;
   display: block;
-  background-color: #2e2f30;
+  background-color: #d3dce6;
   font-size: 13px;
 }
 
