@@ -11,7 +11,13 @@ class AboutController extends Controller
 
     public function index()
     {
-        $data = About::orderby('id','DESC')->first();
+        $data = About::where('id','1')->first();
+        return view('admin.about.index',compact('data'));
+    }
+
+    public function projectStatement()
+    {
+        $data = About::where('id','2')->first();
         return view('admin.about.index',compact('data'));
     }
 

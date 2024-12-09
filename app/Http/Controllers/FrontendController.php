@@ -21,9 +21,16 @@ class FrontendController extends Controller
     }
     public function about()
     {
-        $data = About::orderby('id','DESC')->first();
+        $data = About::where('id','1')->first();
         return view('frontend.about',compact('data'));
     }
+
+    public function projectStatement()
+    {
+        $data = About::where('id','2')->first();
+        return view('frontend.about',compact('data'));
+    }
+    
     public function contact()
     {
         return view('frontend.contact');
