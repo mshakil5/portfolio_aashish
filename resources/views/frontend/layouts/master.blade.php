@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="{{ asset('assets/front/assets/ico/favicon.png')}}">
 
-    <title>Portfolio</title>
+    <title>{{ \App\Models\CompanyDetail::where('id',1)->first()->company_name }}</title>
 
     <!-- Bootstrap core CSS -->
    

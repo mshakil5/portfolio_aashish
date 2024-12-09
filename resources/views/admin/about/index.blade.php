@@ -86,6 +86,13 @@
 @section('script')
 
 <script src="//cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.config.versionCheck = false;
+    $('.ckeditor').each(function () {
+        CKEDITOR.replace(this);
+    });
+  </script>
+  
     <script>
         $(document).ready(function () {
             $("#newBtn").click(function(){
@@ -228,6 +235,10 @@
             //Delete
 
             function populateForm(data){
+                for ( instance in CKEDITOR.instances ) {
+                    CKEDITOR.instances[instance].updateElement();
+                    } 
+
                 $("#title").val(data.title);
                 $("#big_title").val(data.big_title);
                 $("#description").val(data.description);

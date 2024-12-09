@@ -23,6 +23,7 @@ class PageController extends Controller
         $data = new Page();
         $data->menu = $request->menu;
         $data->title = $request->title;
+        $data->description = $request->description;
         $data->status = "0";
         $data->created_by = Auth::user()->id;
         if ($data->save()) {
@@ -67,6 +68,7 @@ class PageController extends Controller
 
             $data->menu = $request->menu;
             $data->title = $request->title;
+            $data->description = $request->description;
             $data->status = "0";
             $data->updated_by = Auth::user()->id;
 

@@ -56,6 +56,13 @@
 
                             </div>
 
+                            <div class="col-lg-12 d-none">
+                              <div>
+                                  <label for="description">Description</label>
+                                  <textarea id="description" name="description" class="form-control ckeditor" cols="30" rows="5"></textarea>
+                              </div>
+                            </div>
+
                             
                         </div>
                     </form>
@@ -163,6 +170,14 @@
 @endsection
 @section('script')
 
+<script src="//cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
+<script>
+  CKEDITOR.config.versionCheck = false;
+  $('.ckeditor').each(function () {
+      CKEDITOR.replace(this);
+  });
+</script>
+
     <script>
         
         var storedFiles = [];
@@ -190,7 +205,10 @@
             $("#addBtn").click(function(){
             //   alert("#addBtn");
                 if($(this).val() == 'Create') {
-                    
+
+                  for ( instance in CKEDITOR.instances ) {
+                    CKEDITOR.instances[instance].updateElement();
+                    } 
 
                     var form_data = new FormData();
                     for(var i=0, len=storedFiles.length; i<len; i++) {
@@ -222,6 +240,10 @@
                 //create  end
                 //Update
                 if($(this).val() == 'Update'){
+
+                  for ( instance in CKEDITOR.instances ) {
+                    CKEDITOR.instances[instance].updateElement();
+                    } 
 
                     var file_data = $('#image').prop('files')[0];
                     if(typeof file_data === 'undefined'){
