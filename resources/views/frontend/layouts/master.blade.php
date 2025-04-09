@@ -78,7 +78,9 @@
       $menus = \App\Models\Menu::with('category')->orderby('id','DESC')->get();
       $pages = \App\Models\Page::orderby('id','DESC')->get();
       $category = \App\Models\Category::where('menu_id', 4)->orderby('id','DESC')->get();
+      $motions = \App\Models\Category::where('menu_id', 3)->orderby('id','DESC')->get();
 
+      // dd($menus);
   @endphp
 <div class="navmenu navmenu-default navmenu-fixed-left">
       
@@ -87,6 +89,10 @@
 
         @foreach ($category as $cats)
         <li><a href="{{route('gallery', ['mid' => $cats->menu_id, 'catid' => $cats->id ])}}">{{$cats->name}}</a></li>
+        @endforeach
+
+        @foreach ($motions as $motion)
+        <li><a href="{{route('gallery', ['mid' => $motion->menu_id, 'catid' => $motion->id ])}}">{{$motion->name}}</a></li>
         @endforeach
 
         @foreach ($menus as $menu)
@@ -105,7 +111,7 @@
 
         
         @foreach ($pages as $page)
-        <li><a href="{{route('frontend.pages', $page->id)}}">{{$page->menu}}</a></li>
+        {{-- <li><a href="{{route('frontend.pages', $page->id)}}">{{$page->menu}}</a></li> --}}
         @endforeach
         
 

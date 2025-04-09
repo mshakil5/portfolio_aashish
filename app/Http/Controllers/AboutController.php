@@ -21,6 +21,12 @@ class AboutController extends Controller
         return view('admin.about.index',compact('data'));
     }
 
+    public function Reporting()
+    {
+        $data = About::where('id','6')->first();
+        return view('admin.about.index',compact('data'));
+    }
+
 
     public function store(Request $request)
     {

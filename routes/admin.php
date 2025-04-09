@@ -85,6 +85,7 @@ Route::group(['prefix' =>'admin/', 'middleware' => ['auth', 'is_admin']], functi
     // about
     Route::get('/about', [AboutController::class, 'index'])->name('admin.about');
     Route::get('/project-statement', [AboutController::class, 'projectStatement'])->name('admin.projectStatement');
+    Route::get('/reporting', [AboutController::class, 'Reporting'])->name('admin.reporting');
     Route::post('/about', [AboutController::class, 'store']);
     Route::get('/about/{id}/edit', [AboutController::class, 'edit']);
     Route::post('/about-update', [AboutController::class, 'update']);
