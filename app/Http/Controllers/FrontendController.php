@@ -30,6 +30,12 @@ class FrontendController extends Controller
         $data = About::where('id','2')->first();
         return view('frontend.about',compact('data'));
     }
+
+    public function reporting()
+    {
+        $data = About::where('id','6')->first();
+        return view('frontend.about',compact('data'));
+    }
     
     public function contact()
     {
