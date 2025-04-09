@@ -10,7 +10,7 @@
     <link href="{{ asset('assets/front/css/lightbox.css')}}" rel="stylesheet" type="text/css" />
 
 <div class="canvas gallery"><br>
-    <h1 class="blog-post-title text-center">Have a look to my works</h1>
+    {{-- <h1 class="blog-post-title text-center">Have a look to my works</h1> --}}
     <span class="title-divider"></span>
 
   <div id="container" class="container">
