@@ -147,7 +147,7 @@
                                 </td>
                                 <td style="text-align: center">{{$data->link}}</td>
                                 <td style="text-align: center">
-                                    {!! Str::limit($data->description, 200) !!}
+                                    {!! Str::before($data->description, "\n") !!}
                                 </td>
         
                                 <td style="text-align: center">
