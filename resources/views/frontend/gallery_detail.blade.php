@@ -45,7 +45,7 @@
         @endif
 
         
-    <h1 class="blog-post-title text-center">Have a look to my others work</h1>
+    {{-- <h1 class="blog-post-title text-center">Have a look to my others work</h1> --}}
     <span class="title-divider"></span>
 
         <div id="gallery-content">

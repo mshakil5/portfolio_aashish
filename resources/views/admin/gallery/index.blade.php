@@ -122,46 +122,45 @@
             <div class="card-body">
 
                 <div class="container" style="max-width: 1400px;">
-                    <table class="table table-bordered table-hover table-responsive" id="example" style="width: 100%">
-                        <thead>
-                        <tr>
-                            <th style="text-align: center">ID</th>
-                            <th style="text-align: center">Title</th>
-                            <th style="text-align: center">Category</th>
-                            <th style="text-align: center">Image</th>
-                            <th style="text-align: center">Link</th>
-                            <th style="text-align: center">Description</th>
-                            <th style="text-align: center">Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                          @foreach ($data as $key => $data)
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover" id="example" style="width: 100%">
+                            <thead>
                             <tr>
-                                <td style="text-align: center">{{ $key + 1 }}</td>
-                                <td style="text-align: center">{{$data->title}}</td>
-                                <td style="text-align: center">{{$data->category->name}}</td>
-                                <td style="text-align: center">
-                                    @if ($data->image)
-                                    <img src="{{asset('images/gallery/'.$data->image)}}" height="120px" width="220px" alt="">
-                                    @endif
-                                </td>
-                                <td style="text-align: center">{{$data->link}}</td>
-                                <td style="text-align: center">
-                                    {!! Str::before($data->description, "\n") !!}
-                                </td>
-        
-                                <td style="text-align: center">
-                                    
-                                {{-- <a href="{{route('admin.transactionView',$data->id)}}" ><i class="fa fa-eye" style="color: #548058;font-size:16px;"></i></a> --}}
-        
-                                <a id="EditBtn" rid="{{$data->id}}"><i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i></a>
-                                <a id="deleteBtn" rid="{{$data->id}}"><i class="fa fa-trash-o" style="color: red;font-size:16px;"></i></a>
-                                </td>
+                                <th style="text-align: center">ID</th>
+                                <th style="text-align: center">Title</th>
+                                <th style="text-align: center">Category</th>
+                                <th style="text-align: center">Image</th>
+                                <th style="text-align: center">Link</th>
+                                <th style="text-align: center">Description</th>
+                                <th style="text-align: center">Action</th>
                             </tr>
-                          @endforeach
-                        
-                        </tbody>
-                      </table>
+                            </thead>
+                            <tbody>
+                              @foreach ($data as $key => $data)
+                                <tr>
+                                    <td style="text-align: center">{{ $key + 1 }}</td>
+                                    <td style="text-align: center">{{$data->title}}</td>
+                                    <td style="text-align: center">{{$data->category->name}}</td>
+                                    <td style="text-align: center">
+                                        @if ($data->image)
+                                        <img src="{{asset('images/gallery/'.$data->image)}}" class="img-fluid" alt="">
+                                        @endif
+                                    </td>
+                                    <td style="text-align: center">{{$data->link}}</td>
+                                    <td style="text-align: center">
+                                        {!! Str::before($data->description, "\n") !!}
+                                    </td>
+            
+                                    <td style="text-align: center">
+                                        <a id="EditBtn" rid="{{$data->id}}"><i class="fa fa-edit" style="color: #2196f3;font-size:16px;"></i></a>
+                                        <a id="deleteBtn" rid="{{$data->id}}"><i class="fa fa-trash-o" style="color: red;font-size:16px;"></i></a>
+                                    </td>
+                                </tr>
+                              @endforeach
+                            
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
               
