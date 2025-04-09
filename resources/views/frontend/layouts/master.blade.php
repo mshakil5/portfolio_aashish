@@ -77,8 +77,8 @@
   @php
       $menus = \App\Models\Menu::with('category')->orderby('id','DESC')->get();
       $pages = \App\Models\Page::orderby('id','DESC')->get();
-      $category = \App\Models\Category::where('menu_id', 4)->orderby('id','DESC')->get();
-      $motions = \App\Models\Category::where('menu_id', 3)->orderby('id','DESC')->get();
+      $category = \App\Models\Category::where('menu_id', 5)->orderby('id','DESC')->get();
+      $motions = \App\Models\Category::where('menu_id', 6)->orderby('id','DESC')->get();
 
       // dd($menus);
   @endphp
