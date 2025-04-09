@@ -56,6 +56,10 @@
               0% { transform: rotate(0deg); }
               100% { transform: rotate(360deg); }
           }
+
+          .d-none {
+            display: none !important;
+          }
   </style>
 
 
@@ -73,15 +77,21 @@
   @php
       $menus = \App\Models\Menu::with('category')->orderby('id','DESC')->get();
       $pages = \App\Models\Page::orderby('id','DESC')->get();
+      $category = \App\Models\Category::where('menu_id', 4)->orderby('id','DESC')->get();
+
   @endphp
 <div class="navmenu navmenu-default navmenu-fixed-left">
       
      <ul class="nav navmenu-nav">
         <li><a href="{{route('homepage')}}">Home</a></li>
 
+        @foreach ($category as $cats)
+        <li><a href="{{route('gallery', ['mid' => $cats->menu_id, 'catid' => $cats->id ])}}">{{$cats->name}}</a></li>
+        @endforeach
+
         @foreach ($menus as $menu)
 
-        <li class="nav-link">
+        <li class="nav-link d-none">
           <a href="#">{{$menu->name}}    &raquo;</a>
           <div class="subitem">
             @foreach ($menu->category as $cat)
