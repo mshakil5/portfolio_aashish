@@ -146,7 +146,9 @@
                                     @endif
                                 </td>
                                 <td style="text-align: center">{{$data->link}}</td>
-                                <td style="text-align: center">{!! $data->description !!}</td>
+                                <td style="text-align: center">
+                                    {!! Str::limit($data->description, 200) !!}
+                                </td>
         
                                 <td style="text-align: center">
                                     
