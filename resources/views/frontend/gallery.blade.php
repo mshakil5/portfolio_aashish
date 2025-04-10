@@ -35,11 +35,12 @@
 
 
               @foreach ($data as $item)
-                  
-              <a class="col-md-4" href="{{route('galleryDetails', $item->id)}}"><img src="{{asset('images/gallery/'.$item->image)}}" class="img-responsive"></a>
-
-              @endforeach
-                  
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                  <a href="{{ asset('images/gallery/' . $item->image) }}" data-lightbox="gallery" data-title="{{ $item->title ?? '' }}">
+                    <img src="{{ asset('images/gallery/' . $item->image) }}" class="img-responsive">
+                  </a>
+                </div>    
+              @endforeach    
 
           </div>
         </div>

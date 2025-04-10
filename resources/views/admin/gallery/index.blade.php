@@ -143,7 +143,7 @@
                                     <td style="text-align: center">{{$data->category->name}}</td>
                                     <td style="text-align: center">
                                         @if ($data->image)
-                                        <img src="{{asset('images/gallery/'.$data->image)}}" class="img-fluid" alt="">
+                                        <img src="{{asset('images/gallery/'.$data->image)}}" class="img-fluid" alt="" height="200px" width="300px">
                                         @endif
                                     </td>
                                     <td style="text-align: center">{{$data->link}}</td>
@@ -182,25 +182,43 @@
 
 @endsection
 @section('script')
-<script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
-{{-- <script src="https://cdn.ckeditor.com/4.24.0-lts/standard/ckeditor.js"></script> --}}
+{{-- <script src="https://cdn.ckeditor.com/4.25.1-lts/standard/ckeditor.js"></script> --}}
+<script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+{{-- <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script> --}}
 
 <!-- Summernote -->
 {{-- <script src="../../plugins/summernote/summernote-bs4.min.js"></script> --}}
     <script>
         $(document).ready(function () {
+
+
+            function initializeCKEditor() {
+                if (typeof CKEDITOR !== 'undefined') {
+                    CKEDITOR.replace('description', {
+                        // Optional: Add your CKEditor configuration here
+                        toolbar: [
+                            { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat'] },
+                            { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Blockquote'] },
+                            { name: 'links', items: ['Link', 'Unlink'] },
+                            { name: 'insert', items: ['Image', 'Table'] },
+                            { name: 'document', items: ['Source'] }
+                        ],
+                        height: 200
+                    });
+                } else {
+                    console.error('CKEditor not loaded');
+                }
+            }
+
             $("#addThisFormContainer").hide();
             $("#newBtn").click(function(){
-                $("#description").addClass("ckeditor");
-                for ( instance in CKEDITOR.instances ) {
-                    CKEDITOR.instances[instance].updateElement();
-                } 
-                 CKEDITOR.replace( 'description' );
                 clearform();
                 $("#newBtn").hide(100);
-                $("#addThisFormContainer").show(300);
-
+                $("#addThisFormContainer").show(300, function() {
+                    initializeCKEditor();
+                });
             });
+
             $("#FormCloseBtn").click(function(){
                 window.setTimeout(function(){location.reload()},100)
                 $("#addThisFormContainer").hide(200);
@@ -217,21 +235,26 @@
             //   alert("#addBtn");
                 if($(this).val() == 'Create') {
 
-                    for ( instance in CKEDITOR.instances ) {
-                    CKEDITOR.instances[instance].updateElement();
-                    } 
-
-                    var file_data = $('#image').prop('files')[0];
-                    if(typeof file_data === 'undefined'){
-                        file_data = 'null';
+                    if (typeof CKEDITOR !== 'undefined') {
+                        for (var instance in CKEDITOR.instances) {
+                            CKEDITOR.instances[instance].updateElement();
+                        }
                     }
 
+                    var file_data = $('#image').prop('files')[0];
                     var form_data = new FormData();
-                    form_data.append('image', file_data);
+                    
+                    // Append all form data
+                    form_data.append('image', file_data || '');
                     form_data.append("title", $("#title").val());
                     form_data.append("link", $("#link").val());
                     form_data.append("category_id", $("#category_id").val());
                     form_data.append("description", $("#description").val());
+                    
+                    if($(this).val() == 'Update') {
+                        form_data.append("codeid", $("#codeid").val());
+                    }
+
                     $.ajax({
                       url: url,
                       method: "POST",
@@ -295,11 +318,9 @@
             });
             //Edit
             $("#contentContainer").on('click','#EditBtn', function(){
-                //alert("btn work");
                 codeid = $(this).attr('rid');
-                //console.log($codeid);
                 info_url = url + '/'+codeid+'/edit';
-                //console.log($info_url);
+                
                 $.get(info_url,{},function(d){
                     populateForm(d);
                     pagetop();
@@ -332,18 +353,32 @@
             });
             //Delete
 
-            function populateForm(data){
-                for ( instance in CKEDITOR.instances ) {
-                    CKEDITOR.instances[instance].updateElement();
-                    } 
-                    
-                $("#description").val(data.description);
-                CKEDITOR.replace( 'description' );
+            
 
+            function populateForm(data){
+                // Clear any existing CKEditor instances
+                if (typeof CKEDITOR !== 'undefined') {
+                    for (var instance in CKEDITOR.instances) {
+                        CKEDITOR.instances[instance].destroy();
+                    }
+                }
+                
+                // Populate form fields
                 $("#title").val(data.title);
                 $("#link").val(data.link);
                 $("#category_id").val(data.category_id);
                 $("#codeid").val(data.id);
+                
+                // Initialize CKEditor and set its content
+                setTimeout(function() {
+                    initializeCKEditor();
+                    if (typeof CKEDITOR !== 'undefined' && CKEDITOR.instances['description']) {
+                        CKEDITOR.instances['description'].setData(data.description);
+                    } else {
+                        $("#description").val(data.description);
+                    }
+                }, 100);
+                
                 $("#addBtn").val('Update');
                 $("#addThisFormContainer").show(300);
                 $("#newBtn").hide(100);

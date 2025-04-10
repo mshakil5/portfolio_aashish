@@ -7,7 +7,7 @@
 
   <div class="container ">
     <div class="contact-bg col-md-8 col-sm-12">
-      <h3 class="blog-post-title text-center"> Contact Us </h3>
+      {{-- <h3 class="blog-post-title text-center"> Contact Us </h3> --}}
       
       <img src="{{ asset('images/company/'.\App\Models\CompanyDetail::where('id',1)->first()->footer_logo)}}" alt="" width="100%">
     </div>
