@@ -30,6 +30,16 @@
           </div>
         </div> --}}
       </div>
+
+      @if ($catid == 9)
+        <div id="gallery-content" style="">
+          <div id="gallery-content-center" class="row gallery-content-center-full">
+              @foreach ($data as $item)
+              <a class="col-md-4" href="{{route('galleryDetails', $item->id)}}"><img src="{{asset('images/gallery/'.$item->image)}}" class="img-responsive"></a>
+              @endforeach
+          </div>
+        </div>
+      @else
         <div id="gallery-content">
           <div id="gallery-content-center" class="row gallery-content-center-full">
 
@@ -44,6 +54,12 @@
 
           </div>
         </div>
+      @endif
+
+
+        
+
+        
   </div>
 </div>
 </div>
