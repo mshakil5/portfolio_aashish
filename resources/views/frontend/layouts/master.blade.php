@@ -117,7 +117,7 @@
 
 
         <li><a href="{{route('projectStatement')}}">Project Statement</a></li>
-        <li><a href="{{route('reporting')}}">Reporting</a></li>
+        <li class="d-none"><a href="{{route('reporting')}}">Reporting</a></li>
         <li><a href="{{route('about')}}">Artist Bio</a></li>
         <li><a href="{{route('contact')}}">Contact</a></li>
 
