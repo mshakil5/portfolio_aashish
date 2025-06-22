@@ -127,7 +127,7 @@
         </a>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item d-none">
         <a href="{{route('admin.reporting')}}" class="nav-link {{ (request()->is('admin/reporting*')) ? 'active' : '' }}">
           <i class="nav-icon fas fa-th"></i>
           <p>
